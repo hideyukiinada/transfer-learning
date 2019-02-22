@@ -18,17 +18,9 @@ and classification is mapping the various features with the final classification
 If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
 
 ## Dataset preparation
-Original
-101000
+You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: 
+https://github.com/hideyukiinada/transfer-learning/blob/master/food101.md
 
-Training
-75750
-
-Validation
-10100
-
-Test set
-15150
 
 ## Set up
 Clone this repo to download:
