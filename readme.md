@@ -2,8 +2,17 @@
 Hide Inada
 
 ## Problem statement
-You are a machine learning engineer working for a photo sharing website.
-Your manager comes to you and ask you to classify a food image so that they can potentially show a restaurant nearby and raise an ad revenue.
+Imagine you are a machine learning engineer working for a photo sharing website.
+One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.
+
+The problem is that your manager's manager really wants this feature yesterday and your manager was not able to push back so now he is asking you if there is anyway you can come up with something.
+Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
+
+You want to train at least tens of thousands of images which can take days.  Not only that you are not really sure about hyperparameter setting, so tuning that will multiply the time required for training.  On top of that, you are not really sure if your company has the powerful enough hardware to do this training.
+
+Is there a way?
+
+Yes, possibly.
 
 ## Concept
 It takes significant machine resources and time to train the model especially when there are so many layers.
