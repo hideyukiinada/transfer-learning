@@ -41,6 +41,44 @@ So, pretty much what you need to do is just the two steps:
 
 The whole training process can be done in 1 hour!
 
+## Set up the dataset on your file system
+The only thing you need to do is create a directory structure:
+
+```
+top image directory
+--- image category label 1
+------ jpeg files in that category
+------ jpeg files in that category
+------ jpeg files in that category
+...
+
+--- image category label 2
+------ jpeg files in that category
+------ jpeg files in that category
+------ jpeg files in that category
+...
+```
+
+For example,
+```
+images
+--- burrito
+------ burrito1.jpg
+------ burrito2.jpg
+...
+
+--- sushi
+------ sushi1.jpg
+------ sushi2.jpg
+...
+```
+
+
+
+
+
+
+
 
 ## Dataset preparation
 You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: 
