@@ -17,6 +17,9 @@ Note that this directory contains all the files for both training and test set. 
 
 retrain.py automatically splits the data into training set, validation set and test set, so we will not be using this file this time.
 
+If you want to split the dataset, you can use my script below:
+
+
 # References
 &#91;1&#93; Lukas Bossard, Matthieu Guillaumin, Luc Van Gool. Food-101 – Mining Discriminative Components with Random Forests. https://www.vision.ee.ethz.ch/datasets_extra/food-101/
 
