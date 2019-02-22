@@ -17,6 +17,19 @@ If you go all the way up to the layer one before the output layer, feature extra
 and classification is mapping the various features with the final classification.
 If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
 
+## Dataset preparation
+Original
+101000
+
+Training
+75750
+
+Validation
+10100
+
+Test set
+15150
+
 ## Set up
 Clone this repo to download:
 * retrain.py
