@@ -14,7 +14,7 @@ https://www.vision.ee.ethz.ch/datasets_extra/food-101/
 
 Head over to the page, and download the dataset to your local disk.
 
-## Split the dataset to training, validation and test set
+## Split the dataset to training set, validation set and test set
 After downloading the dataset and expanding the gzipped tar file, you will see that all the images are located under the images directory.
 A script that you will be using for transfer learning expects images for each dataset to be stored in separate directories, so you need to split the dataset into training, validation and test set.
 
