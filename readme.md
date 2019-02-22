@@ -12,7 +12,7 @@ You want to train at least tens of thousands of images which can take days.  Not
 
 Is there a way?
 
-Yes, possibly.
+Yes, possibly.  Transfer training may work for you.
 
 ## Concept
 It takes significant machine resources and time to train the model especially when there are so many layers.
@@ -21,11 +21,26 @@ However, there is a way to short circuit the training process.
 
 This is called transfer learning.
 
-This is based on the assumption that :
-Deep neural network is trained to extract features in various layers.
+This is based on the assumption that a deep neural network is trained to extract features in various layers.
 If you go all the way up to the layer one before the output layer, feature extraction is already done.
 and classification is mapping the various features with the final classification.
 If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
+
+So what you need is:
+1. Pretrained model (graph plus weights)
+1. Some modification to train the last layer
+
+For the first one, the good news is that Google has various pretrained model available for this under the name TensorFlow Hub, and this is available for anyone.
+
+For the second one, they also made the script available.
+
+So, pretty much what you need to do is just the two steps:
+
+1) Set up the dataset on your file system
+2) Run retrain.py
+
+The whole training process can be done in 1 hour!
+
 
 ## Dataset preparation
 You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: 
@@ -62,15 +77,4 @@ food-101/images/<category name>/<file name>
  
  For example,
 food-101/images/spaghetti_bolognese/3294753.jpg
- 
 
-Containing 101,000 images of 101 categories.
-Each category contains:
-training set: 750 
-test set: 250
-
-
-Dataset
-[1] Lukas Bossard, Matthieu Guillaumin, Luc Van Gool. Food-101 – Mining Discriminative Components with Random Forests. https://www.vision.ee.ethz.ch/datasets_extra/food-101/
-[2] Lukas Bossard1 Matthieu Guillaumin1 Luc Van Gool1. Food-101 – Mining Discriminative Components with Random Forests
-https://www.vision.ee.ethz.ch/datasets_extra/food-101/static/bossard_eccv14_food-101.pdf
