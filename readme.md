@@ -119,3 +119,12 @@ food-101/images/<category name>/<file name>
  For example,
 food-101/images/spaghetti_bolognese/3294753.jpg
 
+# What's happening in retrain.py
+What retrain.py does is clever.
+In addition to just train the last layer, it only calculates the front propagation once and uses the cached value.
+This is a huge saving in terms of calculation.
+
+Specifically, when it is first invoked, it uses image as an input and front prop all the way to the bottleneck layer.
+Once the value of the bottleneck layer is calculated for the image, it writes the value to the disk.
+
+After that, it uses the cached value as an input for the 1 layer network to optimize the matrix for the last layer.
