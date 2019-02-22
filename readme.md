@@ -61,7 +61,7 @@ top image directory
 
 For example,
 ```
-images
+food_images
 --- burrito
 ------ burrito1.jpg
 ------ burrito2.jpg
@@ -74,9 +74,12 @@ images
 ```
 
 
+## Training using retrain.py
+```
+python retrain.py --image_dir=food_images
+```
 
-
-
+That's it!
 
 
 
