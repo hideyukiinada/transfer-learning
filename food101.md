@@ -15,10 +15,10 @@ tar zxvf food-101.tar.gz
 This will expand images to food-101/images directory.
 Note that this directory contains all the files for both training and test set.  mega/test.txt contains the list of files that are in the test set.
 
-retrain.py automatically splits the data into training set, validation set and test set, so we will not be using this file this time.
+retrain.py automatically splits the data into training set, validation set and test set while training to calculate stats, so we will not be splitting the dataset beforehand this time.
 
 If you want to split the dataset, you can use my script below:
-
+https://github.com/hideyukiinada/transfer-learning/blob/master/tools/food-101-split
 
 # References
 &#91;1&#93; Lukas Bossard, Matthieu Guillaumin, Luc Van Gool. Food-101 – Mining Discriminative Components with Random Forests. https://www.vision.ee.ethz.ch/datasets_extra/food-101/
