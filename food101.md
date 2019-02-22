@@ -18,9 +18,12 @@ Head over to the page, and download the dataset to your local disk.
 
 ## Dataset preparation
 After downloading the dataset and expanding the gzipped tar file, you will see that all the images are located under the images directory.
+A script that you will be using for transfer learning expects images for each dataset to be stored in separate directories, so you need to split the dataset into training, validation and test set.
 
-mega/test.txt file contains the test set, so you need to move the files in this list to a separate directory.
-I wrote a script to automate this.
+meta/test.txt file contains the test set, so you need to move the files in this list to a separate directory.
+I wrote a script below to automate this:
+
+https://github.com/hideyukiinada/transfer-learning/blob/master/tools/food-101-split
 
 After running the script, the dataset is split into:
 
