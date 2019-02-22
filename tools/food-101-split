@@ -2,6 +2,8 @@
 """
 A script to split Food-101 dataset.
 
+Usage; food-101.split --base_dir <Food 101 dataset directory>
+
 __author__ = "Hide Inada"
 __copyright__ = "Copyright 2019, Hide Inada"
 __license__ = "The MIT License"
@@ -45,6 +47,7 @@ def split_dataset(base_dir_path, image_dir_path):
         prev_category = ""
         image_in_category = 0
         for line in f:
+            line = line.strip()
             category, stem = line.split("/")
 
             if prev_category != category:
@@ -56,24 +59,28 @@ def split_dataset(base_dir_path, image_dir_path):
                 test_category_dir_path = test_dir_path / Path(category)
                 if test_category_dir_path.exists() is False:
                     test_category_dir_path.mkdir(exist_ok=True, parents=True)
+
+                prev_category = category
+
             else:
                 image_in_category += 1
 
-            src_image_path = image_dir_path / Path(stem)
+            src_image_path = image_dir_path / Path(stem + ".jpg")
 
             if image_in_category <= 100:
-                target_image_path = validation_category_dir_path / Path(stem)
+                target_image_path = validation_category_dir_path / Path(stem + ".jpg")
             else:
-                target_image_path = test_category_dir_path / Path(stem)
+                target_image_path = test_category_dir_path / Path(stem + ".jpg")
 
-            src_image_path.rename(target_image_path)
+            # src_image_path.rename(target_image_path)
+            log.info("Src: %s, Target: %s" % (src_image_path, target_image_path))
 
 
 def main():
     """Defines an application's main functionality"""
 
     parser = argparse.ArgumentParser(description='Food-101 base directory')
-    parser.add_argument('base_dir',
+    parser.add_argument('--base_dir',
                         type=str,
                         default=None,
                         help="Directory where Food-101 dataset was extracted.")
