@@ -9,7 +9,7 @@ Key steps are the following:
 2.  Split the dataset to training, validation and test set
 
 ## Download the dataset
-Dataset link is available at:
+The dataset is available at:
 https://www.vision.ee.ethz.ch/datasets_extra/food-101/
 
 Head over to the page, and download the dataset to your local disk.
