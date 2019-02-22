@@ -1,5 +1,22 @@
 readme
 
+## Problem statement
+You are a machine learning engineer working for a photo sharing website.
+Your manager comes to you and ask you to classify a food image so that they can potentially show a restaurant nearby and raise an ad revenue.
+
+## Concept
+It takes significant machine resources and time to train the model especially when there are so many layers.
+
+However, there is a way to short circuit the training process.
+
+This is called transfer learning.
+
+This is based on the assumption that :
+Deep neural network is trained to extract features in various layers.
+If you go all the way up to the layer one before the output layer, feature extraction is already done.
+and classification is mapping the various features with the final classification.
+If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
+
 ## Set up
 Clone this repo to download:
 * retrain.py
