@@ -1,74 +1,37 @@
-readme
+# Preparing Food-101 Dataset for Transfer Learning
+Hide Inada
 
-## Problem statement
-You are a machine learning engineer working for a photo sharing website.
-Your manager comes to you and ask you to classify a food image so that they can potentially show a restaurant nearby and raise an ad revenue.
+## Overview
+In this document, steps to prepare Food-101 Dataset for transfer learning will be discussed.
+Key steps are the following:
 
-## Concept
-It takes significant machine resources and time to train the model especially when there are so many layers.
+1.  Download the dataset
+2.  Split the dataset to training, validation and test set
 
-However, there is a way to short circuit the training process.
+## Download the dataset
+Dataset link is available at:
+https://www.vision.ee.ethz.ch/datasets_extra/food-101/
 
-This is called transfer learning.
+Headover the page, and download to your local disk.
 
-This is based on the assumption that :
-Deep neural network is trained to extract features in various layers.
-If you go all the way up to the layer one before the output layer, feature extraction is already done.
-and classification is mapping the various features with the final classification.
-If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
+## Split the dataset to training, validation and test set
 
 ## Dataset preparation
-Original
-101000
+After downloading the dataset and expanding the gzipped tar file, you will see that all the images are located under the images directory.
 
-Training
-75750
+mega/test.txt file contains the test set, so you need to move the files in this list to a separate directory.
+I wrote a script to automate this.
 
-Validation
-10100
+After running the script, the dataset is split into:
 
-Test set
-15150
+| Type | Number of samples |
+|---|---|
+| Training set | 75750 |
+| Validation set | 10100 |
+| Test set | 15150 |
+| Total | 101000 |
 
-## Set up
-Clone this repo to download:
-* retrain.py
-* label_img.py
-
-retrain.py and label_img.py were developed by the TensorFlow team and licensed under the terms listed at the top of each file.
-
-If you want to check for the newer version, you can check hub and tensorflow repos:
-```
-git clone https://github.com/tensorflow/hub
-diff hub/examples/image_training/retrain.py <path to this retrain.py>
-```
-
-```
-git clone https://github.com/tensorflow/tensorflow
-diff tensorflow/tensorflow/examples/label_image/label_image.py <path to this label_img.py>
-```
-
-food-101.tar.gz
-
-```
-tar zxvf food-101.tar.gz
-```
-
-This expands the files to:
-
-food-101/images/<category name>/<file name>
- 
- For example,
-food-101/images/spaghetti_bolognese/3294753.jpg
- 
-
-Containing 101,000 images of 101 categories.
-Each category contains:
-training set: 750 
-test set: 250
-
-
-Dataset
+References
 [1] Lukas Bossard, Matthieu Guillaumin, Luc Van Gool. Food-101 – Mining Discriminative Components with Random Forests. https://www.vision.ee.ethz.ch/datasets_extra/food-101/
 [2] Lukas Bossard1 Matthieu Guillaumin1 Luc Van Gool1. Food-101 – Mining Discriminative Components with Random Forests
 https://www.vision.ee.ethz.ch/datasets_extra/food-101/static/bossard_eccv14_food-101.pdf
