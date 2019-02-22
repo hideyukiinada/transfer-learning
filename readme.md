@@ -1,6 +1,10 @@
 readme
 
 
+Containing 101,000 images of 101 categories.
+Each category contains:
+training set: 750 
+test set: 250
 
 
 Dataset
