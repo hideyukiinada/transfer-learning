@@ -35,7 +35,19 @@ git clone https://github.com/tensorflow/tensorflow
 diff tensorflow/tensorflow/examples/label_image/label_image.py <path to this label_img.py>
 ```
 
+food-101.tar.gz
 
+```
+tar zxvf food-101.tar.gz
+```
+
+This expands the files to:
+
+food-101/images/<category name>/<file name>
+ 
+ For example,
+food-101/images/spaghetti_bolognese/3294753.jpg
+ 
 
 Containing 101,000 images of 101 categories.
 Each category contains:
