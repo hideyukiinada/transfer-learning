@@ -25,12 +25,12 @@ https://github.com/hideyukiinada/transfer-learning/blob/master/tools/food-101-sp
 
 After running the script, the dataset is split into:
 
-| Type | Number of samples |
-|---|---|
-| Training set | 75750 |
-| Validation set | 10100 |
-| Test set | 15150 |
-| Total | 101000 |
+| Type | Number of samples | Directory name |
+|---|---|---|
+| Training set | 75750 | images |
+| Validation set | 10100 | validation_images |
+| Test set | 15150 | test_images |
+| Total | 101000 | |
 
 # References
 &#91;1&#93; Lukas Bossard, Matthieu Guillaumin, Luc Van Gool. Food-101 – Mining Discriminative Components with Random Forests. https://www.vision.ee.ethz.ch/datasets_extra/food-101/
