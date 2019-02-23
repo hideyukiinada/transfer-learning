@@ -329,8 +329,14 @@ if __name__ == '__main__':
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
 ```
-## 2. 
+## 2. main()
 
+Here are the main items that are done in main().
+
+1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
+2. Ensure a directory to store an intermediate graph exists (prepare_file_system())
+3. Read the image directory and subdirectories, get the list of files in each subdirectory and split the file into training, validation, test set per the ratio specified in command line arguments (create_image_lists()).
+4. 
 ```
 def main(_):
   # Needed to make sure the logging output is visible.
