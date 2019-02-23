@@ -17,7 +17,7 @@ Is there a way?
 Yes, possibly.  Transfer training may work for you.
 
 ## Concept
-It takes significant machine resources and time to train the model especially when there are so many layers.  For example Inception-V3 has 42 layers [1].
+It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].
 
 However, there is a way to short circuit the training process.
 
