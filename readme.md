@@ -342,7 +342,7 @@ Here are the main items that are done in main().
 1. Add the output layer for classification of our data (add_final_retrain_ops())
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
 1. If any data augmentation option is specified, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
-
+1. If data augmentation option was not specified, front propagate the image data through the network all the way up to the bottleneck layer and writes the values to the file system (cache_bottlenecks)
 ```
 def main(_):
   # Needed to make sure the logging output is visible.
