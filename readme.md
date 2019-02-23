@@ -5,6 +5,8 @@ By Hide Inada
 Imagine you are a machine learning engineer working for a photo sharing website.
 One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.
 
+<img src="assets/images/burger.png" width="800px">
+
 The problem is that your manager's manager really wants this feature yesterday and your manager was not able to push back so now he is asking you if there is anyway you can come up with something.
 Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
 
