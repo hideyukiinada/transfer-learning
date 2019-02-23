@@ -146,10 +146,10 @@ def main():
             score = dict()
             for i, d in enumerate([d for d in image_base_dir_path.iterdir() if d.is_dir()]):
 
-                if i > 0:
-                    break
-
-                log.info("Processing " + str(d))
+                # if i > 0:
+                #     break
+                #
+                # log.info("Processing " + str(d))
 
                 normalized_directory_name = d.name.lower().replace("_", "")
                 print("Dir: " + normalized_directory_name)
