@@ -343,6 +343,13 @@ Here are the main items that are done in main().
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
 1. If any data augmentation option is specified, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
 1. If data augmentation option was not specified, front propagate the image data through the network all the way up to the bottleneck layer and writes the values to the file system (cache_bottlenecks)
+1. Add operations to calculate accuracy by comparing predictions and ground-truth and taking the mean (add_evaluation_step())
+1. Consolidate stats that you want to show in TensorBoard and direct the stats log output to the file system by instantiating FileWriter objects
+1. Instantiate tf.train.Saver to prepare for saving weights during training
+1. Train by repeat the following steps
+1.1.  If data augmentation is specified, read the image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
+
+
 ```
 def main(_):
   # Needed to make sure the logging output is visible.
