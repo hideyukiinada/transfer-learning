@@ -334,14 +334,14 @@ if __name__ == '__main__':
 Here are the main items that are done in main().
 
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
-2. Ensure a directory to store an intermediate graph exists (prepare_file_system())
-3. Read the image directory and subdirectories, get the list of files in each subdirectory and split the file into training, validation, test set per the ratio specified in command line arguments (create_image_lists()).
-4. Determine any command line argument is specified for data augmentation (should_distort_images())
-5. Load module spec of the module that you want to instantiate (hub.load_module_spec())
-6. Load the module, and get the last layer of the module (create_module_graph())
-7. Add the output layer for classification of our data (add_final_retrain_ops())
-
-
+1. Ensure a directory to store an intermediate graph exists (prepare_file_system())
+1. Read the image directory and subdirectories, get the list of files in each subdirectory and split the file into training, validation, test set per the ratio specified in command line arguments (create_image_lists()).
+1. Determine any command line argument is specified for data augmentation (should_distort_images())
+1. Load module spec of the module that you want to instantiate (hub.load_module_spec())
+1. Load the module, and get the last layer of the module (create_module_graph())
+1. Add the output layer for classification of our data (add_final_retrain_ops())
+1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
+1. If any data augmentation option is specified, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
 
 ```
 def main(_):
