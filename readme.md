@@ -336,7 +336,13 @@ Here are the main items that are done in main().
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
 2. Ensure a directory to store an intermediate graph exists (prepare_file_system())
 3. Read the image directory and subdirectories, get the list of files in each subdirectory and split the file into training, validation, test set per the ratio specified in command line arguments (create_image_lists()).
-4. 
+4. Determine any command line argument is specified for data augmentation (should_distort_images())
+5. Load module spec of the module that you want to instantiate (hub.load_module_spec())
+6. Load the module, and get the last layer of the module (create_module_graph())
+7. Add the output layer for classification of our data (add_final_retrain_ops())
+
+
+
 ```
 def main(_):
   # Needed to make sure the logging output is visible.
