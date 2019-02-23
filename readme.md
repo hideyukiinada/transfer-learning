@@ -3,21 +3,21 @@
 
 ## Problem statement
 Imagine you are a machine learning engineer working for a photo sharing website.
-One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up that the manager showed you:
+One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
 
 <img src="assets/images/burger.png" width="400px">
 
 The problem is that your manager's manager really wants this feature yesterday and your manager was not able to push back so now he is asking you if there is anyway you can come up with something.
 Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
 
-You want to train at least tens of thousands of images which can take days.  Not only that you are not really sure about hyperparameter setting, so tuning that will multiply the time required for training.  On top of that, you are not really sure if your company has the powerful enough hardware to do this training.
+You want to train at least tens of thousands of images which can take days.  Not only that, you are not really sure about hyperparameter settings, so tuning can multiply the time required for training.  On top of that, you don't even know if your company has the powerful enough hardware to do this training.
 
 Is there a way?
 
 Yes, possibly.  Transfer training may work for you.
 
 ## Concept
-It takes significant machine resources and time to train the model especially when there are so many layers.
+It takes significant machine resources and time to train the model especially when there are so many layers.  For example Inception-V3 has 42 layers [1].
 
 However, there is a way to short circuit the training process.
 
@@ -365,3 +365,5 @@ Here are the main items that are done in main().
 1. If specified in command line, save the labels to the file system
 1. If specified in command line, save the model without weights??? using tf.saved_model.simple_save (export_model())
 
+# References
+(1) Christian Szegedy et al. Rethinking the Inception Architecture for Computer Vision. https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf
