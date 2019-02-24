@@ -303,7 +303,7 @@ A matrix and the bias for the last layer is defined add_final_retrain_ops():
   final_tensor = tf.nn.softmax(logits, name=final_tensor_name)
 ```
 
-## Final words
+# Final words
 Hopefully, this article will help you with your classification task in the future.  If you have any feedback, please feel free to reach out to me.
 
 # References
