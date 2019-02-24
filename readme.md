@@ -172,7 +172,7 @@ Here is the actual result against the image at the top of this article:
 
 # 3. Inside retrain.py
 ## 3.1. Terminology 
-TensorFlow team uses the word "module" to mean a model with pretrained weights.  In this section, I will be following that convention.
+TensorFlow team uses the word "module" to mean "a self-contained piece of a TensorFlow graph, along with its weights" &#91;3&#93;.  In this section, I will be following that convention.
 
 ## 3.2. Overview of high-level items
 Here are the main items that are done in code.
@@ -214,4 +214,5 @@ After that, it uses the cached value as an input for the 1 layer network to opti
 # References
 &#91;1&#93; Christian Szegedy et al. Rethinking the Inception Architecture for Computer Vision. https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf, 2016.
 &#91;2&#93; TensorFlow team. How to Retrain an Image Classifier for New Categories. https://www.tensorflow.org/hub/tutorials/image_retraining.
+&#91;3&#93;  Josh Gordon. Introducing TensorFlow Hub: A Library for Reusable Machine Learning Modules in TensorFlow. https://medium.com/tensorflow/introducing-tensorflow-hub-a-library-for-reusable-machine-learning-modules-in-tensorflow-cdee41fa18f9, 2018.
 
