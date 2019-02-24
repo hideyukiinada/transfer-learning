@@ -26,6 +26,9 @@ This is called transfer learning.
 <img src="assets/images/conventional_net.png" width="400px">
 
 
+<img src="assets/images/transfer.png" width="400px">
+
+
 This is based on the assumption that a deep neural network is trained to extract features in various layers.
 If you go all the way up to the layer one before the output layer, feature extraction is already done.
 and classification is mapping the various features with the final classification.
