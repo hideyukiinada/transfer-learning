@@ -146,7 +146,7 @@ When the script is completed, verify the output in the following directories:
 output_labels.txt contains the classes of your images which were taken from each directory.
 output_graph.pb is the new model file with trained weight in the protobuf format.  You will be using this file for prediction in the next step.
 
-## 2.2. Predict
+## 2.3. Predict
 
 You can use predict.bash if you cloned this repo. It's a wrapper that calls label_image.py with the set of parameters:
 ```
@@ -170,8 +170,8 @@ Here is the actual result against the image at the top of this article:
 
 <img src="assets/images/burger_prediction.jpg" width="1000px" align="middle">
 
-# 3. What's happening in retrain.py
-
+# 3. Inside retrain.py
+# 3.1.  Overview of high-level items
 Here are the main items that are done in code.
 1. Check for command line arguments
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
@@ -188,11 +188,11 @@ Here are the main items that are done in code.
 1. Consolidate stats that you want to show in TensorBoard and direct the stats log output to the file system by instantiating FileWriter objects
 1. Instantiate tf.train.Saver to prepare for saving weights during training
 1. Train by repeat the following steps
-1.1.  If data augmentation is specified, read the image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
-1.2.  If not, read the cached bottleneck layer values for each image from the file system (get_random_cached_bottlenecks) 
-1.3.  Feed the bottleneck values and the ground-truth to the graph and optimize by gradienct descent as defined in add_final_retrain_ops
-1.4.  For pre-determined interval, calculation training accuracy and validation accuracy
-1.5.  For pre-determined interval, save graph and weights
+  1.  If data augmentation is specified, read the image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
+  2.  If not, read the cached bottleneck layer values for each image from the file system (get_random_cached_bottlenecks) 
+  3.  Feed the bottleneck values and the ground-truth to the graph and optimize by gradienct descent as defined in add_final_retrain_ops
+  4.  For pre-determined interval, calculation training accuracy and validation accuracy
+  5.  For pre-determined interval, save graph and weights
 1. Once the training is done, save weights
 1. Predict against the test set to measure accuracy (run_final_eval())
 1. Serialize the graph and save to the file system (save_graph_to_file())
