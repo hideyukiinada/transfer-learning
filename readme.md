@@ -5,9 +5,7 @@
 Imagine you are a machine learning engineer working for a photo sharing website.
 One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
 
-<img src="assets/images/burger.png" width="400px" align="middle">
-
-<img src="assets/images/manager.png" width="400px" align="middle">
+<img src="assets/images/burger.png" width="400px" align="middle">&nbsp;<img src="assets/images/manager.png" width="300px" align="middle">
 
 In this example, your task is to classify the photo as a burger so that a local burger joint's ad is displayed.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
 
