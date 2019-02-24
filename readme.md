@@ -229,7 +229,7 @@ It may not be clear from the overview of the steps but what retrain.py does is c
 <img src="assets/images/transfer.png" width="420px" align="middle">
 
 
-<img src="assets/images/transfer.png" width="420px" align="middle">
+<img src="assets/images/transfer_retrain_py.png" width="420px" align="middle">
 
 In addition to just train the last layer, it only calculates the front propagation once and uses the cached value.
 This is a huge saving in terms of calculation.
