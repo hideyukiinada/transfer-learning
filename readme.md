@@ -50,7 +50,7 @@ So in summary what you need is:
 
 For the first one, the good news is that TensorFlow team has made various pretrained models available for this on their website called TensorFlow Hub.
 
-For the second one, they also made the script available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weight to your computer, so pretty much what you need to do is just the two steps:
+For the second one, they also made the script called "retrain.py" available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weight to your computer, so pretty much what you need to do is just the two steps:
 
 1) Set up the dataset on your file system
 2) Run retrain.py
@@ -58,23 +58,23 @@ For the second one, they also made the script available to automate the creation
 The whole training process can be done in 1 hour!
 
 # 2. Detailed Steps
+In this section, I will go over details of the two high-level steps.
 
-# 1. How to how to train your model and predict using transfer learning
 ## 1.1. Set up the dataset on your file system
-The only thing you need to do is create a directory structure:
+retrain.py expects that image data is stored in a two-level directory structure:
 
 ```
 top image directory
 --- image category label 1
------- jpeg files in that category
------- jpeg files in that category
------- jpeg files in that category
+------ jpeg files in that category 1
+------ jpeg file in that category 1
+------ jpeg file in that category 1
 ...
 
 --- image category label 2
------- jpeg files in that category
------- jpeg files in that category
------- jpeg files in that category
+------ jpeg file in that category 2
+------ jpeg file in that category 2
+------ jpeg file in that category 2
 ...
 ```
 
@@ -92,25 +92,11 @@ food_images
 ...
 ```
 
+Each image directory name is used as the class label of the images.
+retrain.py automatically split validation and test set images from training set, so there is no need for you to separate images if you want to avoid extra work.
 
-## 1.2. Training using retrain.py
-```
-python retrain.py --image_dir=food_images
-```
-
-That's it!
-
-## 1.1 Predict
-
-
-
-## Dataset preparation
-You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: 
-https://github.com/hideyukiinada/transfer-learning/blob/master/food101.md
-
-
-## Set up
-Clone this repo to download:
+## 2.2. Training using retrain.py
+Once the images were laid out, you can clone this repo to download:
 * retrain.py
 * label_img.py
 
@@ -126,6 +112,26 @@ diff hub/examples/image_training/retrain.py <path to this retrain.py>
 git clone https://github.com/tensorflow/tensorflow
 diff tensorflow/tensorflow/examples/label_image/label_image.py <path to this label_img.py>
 ```
+
+
+```
+python retrain.py --image_dir=food_images
+```
+
+
+```
+python retrain.py --image_dir=food_images
+```
+
+That's it!
+
+## 1.1 Predict
+
+
+
+## Dataset preparation
+You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: 
+https://github.com/hideyukiinada/transfer-learning/blob/master/food101.md
 
 food-101.tar.gz
 
