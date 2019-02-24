@@ -267,7 +267,7 @@ So the /tmp/food101/module_cache contains:
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
 It is done in two phases.
 
-The first part is to calculate the bottleneck layer values of each image.  Unless you are using data augmentation, this is done only once for the script execution.  The values are cached on the file system.
+The first part is to calculate the bottleneck layer values of each image.  Unless you are using data augmentation, this is done only once for the script execution in a function run_bottleneck_on_image().  The values are cached on the file system.
 
 <img src="assets/images/transfer_retrain_py.png" width="420px" align="middle">
 
