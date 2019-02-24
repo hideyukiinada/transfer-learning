@@ -15,7 +15,7 @@ tar zxvf food-101.tar.gz
 This will expand images to food-101/images directory.
 Note that this directory contains all the files for both training and test set.  mega/test.txt contains the list of files that are in the test set.
 
-retrain.py automatically splits the data into training set, validation set and test set while training to calculate stats, so we will not be splitting the dataset beforehand this time.
+retrain.py automatically splits the data into training set, validation set and test set while training to calculate stats, so you do not need to split the dataset beforehand unless you want to have a control over how datasets are split for further analysis.
 
 If you want to split the dataset, you can use my script below:
 https://github.com/hideyukiinada/transfer-learning/blob/master/tools/food-101-split
