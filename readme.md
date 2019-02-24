@@ -9,9 +9,9 @@ One morning, your manager comes to you and asks you to develop a feature that cl
 
 In this example, a local burger joint's ad is displayed on the right after your ML code classifies the photo as a burger.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
 
-The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss.  Your manager doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  He assumed that somehow this can be done easily by you.
+The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss that he knows AI.  Unfortunately, your manager does not have an experience in machine learning, so he doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  He assumed that somehow this can be done easily by you.
 
-He said: "It shouldn' be that difficult for you, right!"
+He said: _"It shouldn' be that difficult for you, right!"_
 
 <img src="assets/images/manager.png" width="300px" align="middle">
 
@@ -24,7 +24,8 @@ Aside from recommending to your manager that your manager and your manager's man
 Yes, possibly.  Transfer training may work for you.
 
 <hr>
-This article consists of three parts.  In the first part, I will discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
+This article consists of three parts:
+In the first part, I will discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through retrain.py which is a script the TensorFlow team provided for transfer learning.  I hope this will help you customize the script if needed, or apply knowledge for your future project that requires transfer learning.
 
 ## 1. Concept
 It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].  However, there is a way to short circuit the training process. This is called transfer learning.
