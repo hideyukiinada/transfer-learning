@@ -201,7 +201,7 @@ Here are the main items that are done in code.
 1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
 1. Read the image directory and subdirectories, get the list of JPEG files in each subdirectory and split the set of files into training, validation, test set per the ratio specified in command line arguments (create_image_lists()). Logic to split the datasets is to calculate the hash value of each file name.  Each hash is converted to an int and gets mapped to the 0-100 range to compare against validation and test set ratios for allocation.
 1. Determine any command line argument is specified for data augmentation (should_distort_images())
-1. Load module spec of the module that you want to instantiate (hub.load_module_spec())
+1. Download or read the module from local cache??? that you want to instantiate (hub.load_module_spec()).  See  atomic_download() defined in tensorflow_hub/resolver.py for downloading details.  Module definition is downloaded and stored in tfhub_module.pb. Instantiate ModuleSpec with the downloaded model and names of weight files.
 1. Load the module, and get the last layer of the module (create_module_graph())
 1. Add the output layer for classification of our data (add_final_retrain_ops())
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
@@ -245,6 +245,9 @@ Before calling retrain.py, I specified the TFHUB module cache directory in the s
 ```
 export TFHUB_CACHE_DIR=/tmp/food101/module_cache
 ```
+
+In tensorflow_hub/resolver.py, there is a function called tfhub_cache_dir(), and this retrieves the directory from this environment variable if defined. (You will find this file under your virtualenv's site-packages directory if you are using virtualenv).
+
 
 So the /tmp/food101/module_cache contains:
 
