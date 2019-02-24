@@ -167,7 +167,8 @@ For example, if you want to predict the class for the image, burger.jpg, type:
 ```
 
 Here is the actual result against the image at the top of this article:
-<img src="assets/images/burger_prediction.jpg" width="400px" align="middle">
+
+<img src="assets/images/burger_prediction.jpg" width="1000px" align="middle">
 
 # 3. What's happening in retrain.py
 
