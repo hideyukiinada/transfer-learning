@@ -10,7 +10,7 @@ One morning, your manager comes to you and asks you to develop a feature that cl
 The problem is that your manager's manager really wants this feature yesterday and your manager was not able to push back so now he is asking you if there is anyway you can come up with something.
 Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
 
-You want to train at least tens of thousands of images which can take days.  Not only that, you are not really sure about hyperparameter settings, so tuning can multiply the time required for training.  On top of that, you don't even know if your company has the powerful enough hardware to do this training.
+You want to train at least tens of thousands of images which can take days.  Not only that, you are not really sure about hyperparameter settings, so tuning can multiply the time required for training.  On top of that, you don't even know if your company has the powerful enough hardware to do this training.  You remember that when you asked for NVIDIA DGX-1 and told your manager a price, and your manager was so shocked and burst out coffee all over your desk.
 
 Is there a way?
 
