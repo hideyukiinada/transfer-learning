@@ -225,21 +225,14 @@ Here are the main items that are done in code.
 
 # 3.4. Front prop
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
+It is done in two phases.
 
-<img src="assets/images/transfer.png" width="420px" align="middle">
-
+The first part is to calculate the bottleneck layer values of each image.  Unless you are using data augmentation, this is done only once for the script execution.  The values are cached on the file system.
 
 <img src="assets/images/transfer_retrain_py.png" width="420px" align="middle">
 
-In addition to just train the last layer, it only calculates the front propagation once and uses the cached value.
-This is a huge saving in terms of calculation.
-
-Specifically, when it is first invoked, it uses image as an input and front prop all the way to the bottleneck layer.
-Once the value of the bottleneck layer is calculated for the image, it writes the value to the disk.
-
-After that, it uses the cached value as an input for the 1 layer network to optimize the matrix for the last layer.
-
-
+Second part is to use these values as the input to a dense layer neural network and train.  This is shown in the green box.
+Since you will be updating the weights for the last layer in a loop, this is a huge time saver.
 
 # References
 &#91;1&#93; Christian Szegedy et al. Rethinking the Inception Architecture for Computer Vision. https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf, 2016.
