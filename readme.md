@@ -1,7 +1,7 @@
 # Transfer Learning - How to leverage pretrained model to speed up training for machine learning
 <div style="text-align:right">By Hide Inada</div>
 
-## Problem statement
+## 0. Problem statement
 Imagine you are a machine learning engineer working for a photo sharing website.
 One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
 
@@ -16,7 +16,9 @@ Is there a way?
 
 Yes, possibly.  Transfer training may work for you.
 
-## Concept
+This article consists of three parts.  In the first part, I will first discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
+
+## 1. Concept
 It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].
 
 However, there is a way to short circuit the training process.
@@ -44,22 +46,23 @@ If you go all the way up to the layer one before the output layer, feature extra
 and classification is mapping the various features with the final classification.
 If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
 
-So what you need is:
-1. Pretrained model (graph plus weights)
-1. Some modification to train the last layer
+So what exactly does train the last output layer mean?
+If the bottleneck layer is a a plain-vanilla neural network layer (aka dense layer or a fully connected layer), then there is a matrix and a set of weights to be added as bias.  So you will be training these two unless you decide to add something extra.  In the diagram above, a green box with "Mat" indicates this matrix.  Bias is not shown in the diagram.
 
-For the first one, the good news is that Google has various pretrained model available for this under the name TensorFlow Hub, and this is available for anyone.
+So in summary you need is:
+1. A model with pretrained weights
+1. A new layer with a matrix and bias to classify your images
 
-For the second one, they also made the script available.
+For the first one, the good news is that TensorFlow team has made various pretrained model available for this on their website called TensorFlow Hub.
 
-So, pretty much what you need to do is just the two steps:
+For the second one, they also made the script available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weight to your computer, so pretty much what you need to do is just the two steps:
 
 1) Set up the dataset on your file system
 2) Run retrain.py
 
 The whole training process can be done in 1 hour!
 
-This article consists of two parts.  In the first part, I will first discuss how to train your model and predict using transfer learning.  In the second part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
+# 2. Detailed Steps
 
 # 1. How to how to train your model and predict using transfer learning
 ## 1.1. Set up the dataset on your file system
@@ -142,7 +145,7 @@ food-101/images/<category name>/<file name>
  For example,
 food-101/images/spaghetti_bolognese/3294753.jpg
 
-# What's happening in retrain.py
+# 3. What's happening in retrain.py
 What retrain.py does is clever.
 In addition to just train the last layer, it only calculates the front propagation once and uses the cached value.
 This is a huge saving in terms of calculation.
