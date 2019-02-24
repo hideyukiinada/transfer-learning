@@ -95,6 +95,8 @@ food_images
 Each image directory name is used as the class label of the images.
 retrain.py automatically split validation and test set images from training set, so there is no need for you to separate images if you want to avoid extra work.
 
+You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: https://github.com/hideyukiinada/transfer-learning/blob/master/food101.md
+
 ## 2.2. Training using retrain.py
 Once the images were laid out, you can clone this repo to download:
 * retrain.py
@@ -144,26 +146,7 @@ When the script is completed, verify the output in the following directories:
 output_labels.txt contains the classes of your images which were taken from each directory.
 output_graph.pb is the new model file with trained weight in the protobuf format.  You will be using this file for prediction in the next step.
 
-## 1.1 Predict
-
-
-
-## Dataset preparation
-You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: 
-https://github.com/hideyukiinada/transfer-learning/blob/master/food101.md
-
-food-101.tar.gz
-
-```
-tar zxvf food-101.tar.gz
-```
-
-This expands the files to:
-
-food-101/images/<category name>/<file name>
- 
- For example,
-food-101/images/spaghetti_bolognese/3294753.jpg
+## 2.2. Predict
 
 # 3. What's happening in retrain.py
 What retrain.py does is clever.
