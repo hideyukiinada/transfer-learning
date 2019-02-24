@@ -60,7 +60,7 @@ The whole training process can be done in 1 hour!
 # 2. Detailed Steps
 In this section, I will go over details of the two high-level steps.
 
-## 1.1. Set up the dataset on your file system
+## 2.1. Set up the dataset on your file system
 retrain.py expects that image data is stored in a two-level directory structure:
 
 ```
