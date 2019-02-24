@@ -9,7 +9,7 @@ One morning, your manager comes to you and asks you to develop a feature that cl
 
 In this example, your task is to classify the photo as a burger so that a local burger joint's ad is displayed.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
 
-The problem is that your manager's manager does not really know much about machine learning, but really wants this feature yesterday to impress his new boss and your manager was not able to push back.  So now he is asking you if there is anyway you can come up with something.
+The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss and your manager was not able to push back.  So now he is asking you if there is anyway you can come up with something.
 Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
 
 You want to train at least tens of thousands of images which can take days.  Not only that, you are not really sure about hyperparameter settings, so tuning can multiply the time required for training.  On top of that, you don't even know if your company has the powerful enough hardware to do this training.  You remember that when you asked for NVIDIA DGX-1 and told your manager a price, your manager was so shocked and burst out coffee all over your desk.
