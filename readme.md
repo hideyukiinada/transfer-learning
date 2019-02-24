@@ -7,6 +7,8 @@ One morning, your manager comes to you and asks you to develop a feature that cl
 
 <img src="assets/images/burger.png" width="400px" align="middle">
 
+In this example, your task is to classify the photo as a burger so that a local burger joint's ad is displayed.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
+
 The problem is that your manager's manager really wants this feature yesterday and your manager was not able to push back so now he is asking you if there is anyway you can come up with something.
 Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
 
