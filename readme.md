@@ -16,7 +16,9 @@ Is there a way?
 
 Yes, possibly.  Transfer training may work for you.
 
-This article consists of three parts.  In the first part, I will first discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
+<hr>
+
+This article consists of three parts.  In the first part, I will discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
 
 ## 1. Concept
 It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].
