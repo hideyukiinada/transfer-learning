@@ -3,18 +3,22 @@
 
 ## Problem statement
 Imagine you are a machine learning engineer working for a photo sharing website.
-One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
+One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page. This would raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
 
-<img src="assets/images/burger.png" width="400px" align="middle">&nbsp;<img src="assets/images/manager.png" width="300px" align="middle">
+<img src="assets/images/burger.png" width="400px" align="middle">
 
-In this example, your task is to classify the photo as a burger so that a local burger joint's ad is displayed.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
+In this example, a local burger joint's ad is displayed on the right after your ML code classifies the photo as a burger.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
 
-The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss and your manager doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  Thinking that somehow this can be done easily by you, he was surprised to learn from you that it's not as easy as he thinks it is, but he doesn't want to renegotiate with his manager, so now he is asking you if there is anyway you can come up with something.
-Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
+The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss.  Your manager doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  He assumed that somehow this can be done easily by you.
+
+He said: "This shouldn' take too much for you, right!"
+<img src="assets/images/manager.png" width="300px" align="middle">
 
 You want to train at least tens of thousands of images which can take days.  Not only that, you are not really sure about hyperparameter settings, so tuning can multiply the time required for training.  On top of that, you don't even know if your company has the powerful enough hardware to do this training fast enough.  You remember that when you asked for NVIDIA DGX-1 and told your manager a price, your manager was so shocked and burst out coffee all over your desk.
 
-Is there a way to do this?
+After you explained all these challenges to him, he looked surprised and finally realized that it's not as easy as he thinks it is.  However, he doesn't want to renegotiate the timeline with his manager, so now he is asking you if there is anyway you can come up with something.
+
+Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
 
 Yes, possibly.  Transfer training may work for you.
 
