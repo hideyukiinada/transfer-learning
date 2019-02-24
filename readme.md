@@ -171,10 +171,31 @@ Here is the actual result against the image at the top of this article:
 <img src="assets/images/burger_prediction.jpg" width="1000px" align="middle">
 
 # 3. Inside retrain.py
-## 3.1. Terminology 
+## 3.1. License
+As I am going over some part of the code, here is the license for the code by the TensorFlow team:
+```
+# Copyright 2015 The TensorFlow Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ==============================================================================
+# NOTICE: This work was derived from tensorflow/examples/image_retraining
+# and modified to use TensorFlow Hub modules.
+```
+
+## 3.2. Terminology 
 TensorFlow team uses the word "module" to mean "a self-contained piece of a TensorFlow graph, along with its weights" &#91;3&#93;.  In this section, I will be following that convention.
 
-## 3.2. Overview of high-level items
+## 3.3. Overview of high-level items
 Here are the main items that are done in code.
 1. Check for command line arguments
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
@@ -202,7 +223,14 @@ Here are the main items that are done in code.
 1. If specified in command line, save the labels to the file system
 1. If specified in command line, save the model without weights??? using tf.saved_model.simple_save (export_model())
 
-What retrain.py does is clever.
+# 3.4. Front prop
+It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
+
+<img src="assets/images/transfer.png" width="420px" align="middle">
+
+
+<img src="assets/images/transfer.png" width="420px" align="middle">
+
 In addition to just train the last layer, it only calculates the front propagation once and uses the cached value.
 This is a huge saving in terms of calculation.
 
@@ -210,6 +238,8 @@ Specifically, when it is first invoked, it uses image as an input and front prop
 Once the value of the bottleneck layer is calculated for the image, it writes the value to the disk.
 
 After that, it uses the cached value as an input for the 1 layer network to optimize the matrix for the last layer.
+
+
 
 # References
 &#91;1&#93; Christian Szegedy et al. Rethinking the Inception Architecture for Computer Vision. https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf, 2016.
