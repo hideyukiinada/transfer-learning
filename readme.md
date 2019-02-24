@@ -23,41 +23,32 @@ Yes, possibly.  Transfer training may work for you.
 This article consists of three parts.  In the first part, I will discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
 
 ## 1. Concept
-It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].
-
-However, there is a way to short circuit the training process.
-
-This is called transfer learning.
-
+It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].  However, there is a way to short circuit the training process. This is called transfer learning.
 Shown below is a conventional network architecture:
 
 <img src="assets/images/conventional_net.png" width="400px" align="middle">
 
 Your input front propagations layer by layer all the way to the output layer.
-Once the loss is calculated, gradient of loss is probagated the other way going all the way to the first layer after the input recalculating weights for each layer.
+Once the loss is calculated, gradient of loss is probagated all the way back to the first layer after the input recalculating weights for each layer.
 
-This loop continues until the loss becomes reasonably small. Since there are a lot of calculating involved, the process can take days or even longer.
+This is done in a loop, and iterations continue until the loss becomes reasonably small. Since there are a lot of calculations involved, the process can take days or even longer.
 
-In transfer learning, instead of training the network scratch, you reuse the network that was already trained by someone.
+In transfer learning, instead of training the network scratch, you reuse the network that was already trained, which is most likely by someone else.
 In the below diagram, red dotted line shows the part that can be reused.
 
 <img src="assets/images/transfer.png" width="420px" align="middle">
 
-
-
-This is based on the assumption that a deep neural network is trained to extract features in various layers.
-If you go all the way up to the layer one before the output layer, feature extraction is already done.
-and classification is mapping the various features with the final classification.
-If you train a deep neural network with data that is similar to the data that you want to all you need to do is train the last output layer.
+This works based on the assumption that a deep neural network is trained to extract features in various layers.
+If you go all the way up to the layer one before the output layer, which is called bottleneck layer, feature extraction is already done and that last layer's responsibility is to map extracted features in the bottleneck layer to a set of classes for your images.
 
 So what exactly does train the last output layer mean?
 If the bottleneck layer is a a plain-vanilla neural network layer (aka dense layer or a fully connected layer), then there is a matrix and a set of weights to be added as bias.  So you will be training these two unless you decide to add something extra.  In the diagram above, a green box with "Mat" indicates this matrix.  Bias is not shown in the diagram.
 
-So in summary you need is:
+So in summary what you need is:
 1. A model with pretrained weights
 1. A new layer with a matrix and bias to classify your images
 
-For the first one, the good news is that TensorFlow team has made various pretrained model available for this on their website called TensorFlow Hub.
+For the first one, the good news is that TensorFlow team has made various pretrained models available for this on their website called TensorFlow Hub.
 
 For the second one, they also made the script available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weight to your computer, so pretty much what you need to do is just the two steps:
 
