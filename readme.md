@@ -239,6 +239,27 @@ By default, a default module to be downloaded and retrained is set to https://tf
 
 [TensorFlow Hub website](https://tfhub.dev/) provides various modules for you to retrain if you want to try other modules.
 
+## 3.4 Module files
+
+As I specified /tmp/food/101, if I type
+```
+find /tmp/food101
+```
+I will get:
+```
+/tmp/food101
+/tmp/food101/module_cache
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/variables
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/variables/variables.index
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/variables/variables.data-00000-of-00001
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/assets
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/saved_model.pb
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/tfhub_module.pb
+/tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763.descriptor.txt
+
+```
+
 ## 3.4. Front prop
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
 It is done in two phases.
