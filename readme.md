@@ -33,40 +33,41 @@ Shown below is a conventional network architecture:
 
 <img src="assets/images/conventional_net.png" width="400px" align="middle">
 
-Your input front propagations layer by layer all the way to the output layer.
-Once the loss is calculated, gradient of loss is probagated all the way back to the first layer after the input recalculating weights for each layer.
+Input to the network propagates layer by layer all the way to the output layer.
+Once loss is calculated, gradient of the loss is probagated all the way back to the first layer after the input.  In the back propagation process, weights for each layer is recalculate.
 
-This is done in a loop, and iterations continue until the loss becomes reasonably small. Since there are a lot of calculations involved, the process can take days or even longer.
+This training process is done in a loop, and iterations continue until the loss becomes reasonably small. Since there are a lot of calculations involved, the process can take days or even longer.
 
-In transfer learning, instead of training the network scratch, you reuse the network that was already trained, which is most likely by someone else.
+In transfer learning, instead of training the model from scratch, you reuse the model that was already trained.  Most likely, you will be using the model, which has been trained by someone else with adequite hardware resources.
+
 In the below diagram, red dotted line shows the part that can be reused.
 
 <img src="assets/images/transfer.png" width="420px" align="middle">
 
 This works based on the assumption that a deep neural network is trained to extract features in various layers.
-If you go all the way up to the layer one before the output layer, which is called bottleneck layer, feature extraction is already done and that last layer's responsibility is to map extracted features in the bottleneck layer to a set of classes for your images.
+If you go all the way up to the layer one before the output layer, which is called the bottleneck layer by the TensorFlow team, feature extraction is already done and that last layer's responsibility is to map extracted features in the bottleneck layer to a set of classes for your images on the output layer.
 
 So what exactly does train the last output layer mean?
-If the bottleneck layer is a a plain-vanilla neural network layer (aka dense layer or a fully connected layer), then there is a matrix and a set of weights to be added as bias.  So you will be training these two unless you decide to add something extra.  In the diagram above, a green box with "Mat" indicates this matrix.  Bias is not shown in the diagram.
+If the bottleneck layer is a plain-vanilla neural network layer (aka dense layer or a fully connected layer), then there is a matrix and a set of weights to be added as biases.  So you will be training these two unless you decide to add something extra.  In the diagram above, a green box with "Mat" indicates this matrix.  Biases are not shown in the diagram.
 
 So in summary what you need is:
 1. A model with pretrained weights
-1. A new layer with a matrix and bias to classify your images
+1. A new layer with a matrix and biases to classify your images
 
-For the first one, the good news is that TensorFlow team has made various pretrained models available for this on their website called TensorFlow Hub.
+For the first one, the good news is that the TensorFlow team has made various pretrained models available for this on their website called TensorFlow Hub.
 
-For the second one, they also made the script called "retrain.py" available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weight to your computer, so pretty much what you need to do is just the two steps:
+For the second one, they also made a script called "retrain.py" available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weights to your computer, so pretty much what you need to do is just the following two steps:
 
-1) Set up the dataset on your file system
+1) Set up a dataset with images on your file system
 2) Run retrain.py
 
-The whole training process can be done in 1 hour!
+The whole training process can be done in 1 hour depending on how large your dataset is!
 
-# 2. Detailed Steps
+# 2. Steps to train the model
 In this section, I will go over details of the two high-level steps.
 
 ## 2.1. Set up the dataset on your file system
-retrain.py expects that image data is stored in a two-level directory structure:
+retrain.py expects that image data is stored in a multi-level directory structure.  Here is the two-level directory structure that I recommand:
 
 ```
 top image directory
@@ -97,13 +98,13 @@ food_images
 ...
 ```
 
-Each image directory name is used as the class label of the images.
-retrain.py automatically split validation and test set images from training set, so there is no need for you to separate images if you want to avoid extra work.
+Each image directory name is used as the class label of the images in the directory.
+retrain.py automatically splits validation and test set images from the training set, so there is no need for you to separate images if you want to avoid extra work.
 
 You can use any dataset that you want, but I used Food-101 dataset.  Please see the below page if you want to use this dataset: https://github.com/hideyukiinada/transfer-learning/blob/master/food101.md
 
 ## 2.2. Training using retrain.py
-Once the images were laid out, you can clone this repo to download:
+Once the images were laid out on your file system, you can clone this repo to download:
 * retrain.py
 * label_img.py
 
@@ -120,7 +121,7 @@ git clone https://github.com/tensorflow/tensorflow
 diff tensorflow/tensorflow/examples/label_image/label_image.py <path to this label_img.py>
 ```
 
-Once you have retrain.py on your local disk, run it with the name of the top-level image directory.
+Once you have retrain.py on your local disk, run it with the name of the top-level image directory specified in the --image_dir option.
 For example, if your images are located under food_images, type: 
 
 ```
@@ -139,7 +140,7 @@ time python retrain.py --image_dir=../../../dataset/food101/food-101/images
 
 ```
 
-Just edit the image_dir path and run it.
+Just edit the image_dir path and run it.  You can also change the TFHUB_CACHE_DIR environment variable to store the module file in a different directory.
 
 This starts the training session.
 
@@ -149,7 +150,7 @@ When the script is completed, verify the output in the following directories:
 * /tmp/output_graph.pb
 
 output_labels.txt contains the classes of your images which were taken from each directory.
-output_graph.pb is the new model file with trained weight in the protobuf format.  You will be using this file for prediction in the next step.
+output_graph.pb is the new model file with trained weight in the protobuf format.  You will be using these files for prediction in the next step.
 
 ## 2.3. Predict
 
@@ -201,7 +202,7 @@ As I am going over some part of the code, here is the license for the code by th
 TensorFlow team uses the word "module" to mean "a self-contained piece of a TensorFlow graph, along with its weights" &#91;3&#93;.  In this section, I will be following that convention.
 
 ## 3.3. Overview of high-level items
-Here are the main items that are done in code.
+Here are the main items that are done in code. Shown in parentheses are the name of the functions that correspond to the task:
 1. Check for command line arguments
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
 1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
@@ -228,7 +229,7 @@ Here are the main items that are done in code.
 1. If specified in command line, save the labels to the file system
 1. If specified in command line, save the model to be served with [TensorFlow serving](https://www.tensorflow.org/tfx/serving/) (export_model()). Note that this function is using now deprecated [tf.saved_model.simple_save () function](https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save), so you may want to update in the future.
 
-## Module
+## 3.4. Module
 By default, a default module to be downloaded and retrained is set to https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1.  This can be overridden with the --tfhub_module argument:
 
 ```
@@ -244,8 +245,6 @@ By default, a default module to be downloaded and retrained is set to https://tf
 ```
 
 [TensorFlow Hub website](https://tfhub.dev/) provides various modules for you to retrain if you want to try other modules.
-
-## 3.4 Module files
 
 Before calling retrain.py, I specified the TFHUB module cache directory in the script:
 ```
@@ -269,7 +268,7 @@ So the /tmp/food101/module_cache contains:
 
 ```
 
-## 3.4. Front prop
+## 3.5. Front propagation
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
 It is done in two phases.
 
@@ -280,7 +279,7 @@ The first part is to calculate the bottleneck layer values of each image.  Unles
 Second part is to use these values as the input to a dense layer neural network and train.  This is shown in the green box.
 Since you will be updating the weights for the last layer in a loop, this is a huge time saver.
 
-## 3.5 Last layer, matrix definition
+## 3.6 Matrix and biases definition for the last layer
 
 A matrix and the bias for the last layer is defined add_final_retrain_ops():
 
@@ -303,6 +302,9 @@ A matrix and the bias for the last layer is defined add_final_retrain_ops():
 
   final_tensor = tf.nn.softmax(logits, name=final_tensor_name)
 ```
+
+## Final words
+Hopefully, this article will help you with your classification task in the future.  If you have any feedback, please feel free to reach out to me.
 
 # References
 &#91;1&#93; Christian Szegedy et al. Rethinking the Inception Architecture for Computer Vision. https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf, 2016.
