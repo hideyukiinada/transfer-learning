@@ -241,14 +241,14 @@ By default, a default module to be downloaded and retrained is set to https://tf
 
 ## 3.4 Module files
 
-As I specified /tmp/food/101, if I type
+Before calling retrain.py, I specified the TFHUB module cache directory in the script:
 ```
-find /tmp/food101
+export TFHUB_CACHE_DIR=/tmp/food101/module_cache
 ```
-I will get:
+
+So the /tmp/food101/module_cache contains:
+
 ```
-/tmp/food101
-/tmp/food101/module_cache
 /tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763
 /tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/variables
 /tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763/variables/variables.index
