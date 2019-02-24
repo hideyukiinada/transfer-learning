@@ -23,9 +23,11 @@ However, there is a way to short circuit the training process.
 
 This is called transfer learning.
 
+Shown below is a conventional network architecture.
 <img src="assets/images/conventional_net.png" width="400px" align="middle">
 
-
+Your input front propagations layer by layer all the way to the output layer.
+Once the loss is calculated, gradient of loss is probagated the other way going all the way to the first layer after the input recalculating weights for each layer.
 
 <img src="assets/images/transfer.png" width="420px" align="middle">
 
