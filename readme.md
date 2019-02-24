@@ -201,8 +201,8 @@ Here are the main items that are done in code.
 1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
 1. Read the image directory and subdirectories, get the list of JPEG files in each subdirectory and split the set of files into training, validation, test set per the ratio specified in command line arguments (create_image_lists()). Logic to split the datasets is to calculate the hash value of each file name.  Each hash is converted to an int and gets mapped to the 0-100 range to compare against validation and test set ratios for allocation.
 1. Determine any command line argument is specified for data augmentation (should_distort_images())
-1. Download or read the module from local cache??? that you want to instantiate (hub.load_module_spec()).  See  atomic_download() defined in tensorflow_hub/resolver.py for downloading details.  Module definition is downloaded and stored in tfhub_module.pb. Instantiate ModuleSpec with the downloaded model and names of weight files.
-1. Load the module, and get the last layer of the module (create_module_graph())
+1. Download or read the module from local cache??? .  Instantiate ModuleSpec with the downloaded model and path to the downloaded weights ((hub.load_module_spec())).  See atomic_download() defined in tensorflow_hub/resolver.py for downloading details. 
+1. Instantiate the Module object from ModuleSpec and get the last layer of the module (create_module_graph())
 1. Add the output layer for classification of our data (add_final_retrain_ops())
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
 1. If any data augmentation option is specified, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
@@ -273,6 +273,30 @@ The first part is to calculate the bottleneck layer values of each image.  Unles
 
 Second part is to use these values as the input to a dense layer neural network and train.  This is shown in the green box.
 Since you will be updating the weights for the last layer in a loop, this is a huge time saver.
+
+## 3.5 Last layer, matrix definition
+
+A matrix and the bias for the last layer is defined add_final_retrain_ops():
+
+```
+  layer_name = 'final_retrain_ops'
+  with tf.name_scope(layer_name):
+    with tf.name_scope('weights'):
+      initial_value = tf.truncated_normal(
+          [bottleneck_tensor_size, class_count], stddev=0.001)
+      layer_weights = tf.Variable(initial_value, name='final_weights')
+      variable_summaries(layer_weights)
+
+    with tf.name_scope('biases'):
+      layer_biases = tf.Variable(tf.zeros([class_count]), name='final_biases')
+      variable_summaries(layer_biases)
+
+    with tf.name_scope('Wx_plus_b'):
+      logits = tf.matmul(bottleneck_input, layer_weights) + layer_biases
+      tf.summary.histogram('pre_activations', logits)
+
+  final_tensor = tf.nn.softmax(logits, name=final_tensor_name)
+```
 
 # References
 &#91;1&#93; Christian Szegedy et al. Rethinking the Inception Architecture for Computer Vision. https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf, 2016.
