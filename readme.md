@@ -220,7 +220,7 @@ Here are the main items that are done in code.
 1. Predict against the test set to measure accuracy (run_final_eval())
 1. Serialize the graph and save to the file system (save_graph_to_file())
 1. If specified in command line, save the labels to the file system
-1. If specified in command line, save the model without weights??? using tf.saved_model.simple_save (export_model())
+1. If specified in command line, save the model to be served with [TensorFlow serving](https://www.tensorflow.org/tfx/serving/) (export_model()). Note that this function is using now deprecated [tf.saved_model.simple_save () function](https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save), so you may want to update in the future.
 
 # 3.4. Front prop
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
