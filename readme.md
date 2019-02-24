@@ -113,17 +113,18 @@ git clone https://github.com/tensorflow/tensorflow
 diff tensorflow/tensorflow/examples/label_image/label_image.py <path to this label_img.py>
 ```
 
+Once you have retrain.py on your local disk, run it with the name of the top-level image directory.
+For example, if your images are located under food_images, type: 
 
 ```
 python retrain.py --image_dir=food_images
 ```
 
+This starts the training session.
 
-```
-python retrain.py --image_dir=food_images
-```
+When the script is completed, verify the output in the following directories:
 
-That's it!
+
 
 ## 1.1 Predict
 
