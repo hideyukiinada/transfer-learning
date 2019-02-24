@@ -11,7 +11,8 @@ In this example, a local burger joint's ad is displayed on the right after your 
 
 The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss.  Your manager doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  He assumed that somehow this can be done easily by you.
 
-He said: "This shouldn' take too much for you, right!"
+He said: "It shouldn' be that difficult for you, right!"
+
 <img src="assets/images/manager.png" width="300px" align="middle">
 
 You want to train at least tens of thousands of images which can take days.  Not only that, you are not really sure about hyperparameter settings, so tuning can multiply the time required for training.  On top of that, you don't even know if your company has the powerful enough hardware to do this training fast enough.  You remember that when you asked for NVIDIA DGX-1 and told your manager a price, your manager was so shocked and burst out coffee all over your desk.
