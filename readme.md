@@ -120,11 +120,29 @@ For example, if your images are located under food_images, type:
 python retrain.py --image_dir=food_images
 ```
 
+If you clone this repo, you can also use my wrapper called train.bash
+```
+#!/bin/bash
+
+# Replace the directory name after the --image_dir
+
+export TFHUB_CACHE_DIR=/tmp/food101/module_cache
+
+time python retrain.py --image_dir=../../../dataset/food101/food-101/images
+
+```
+
+Just edit the image_dir path and run it.
+
 This starts the training session.
 
 When the script is completed, verify the output in the following directories:
 
+* /tmp/output_labels.txt
+* /tmp/output_graph.pb
 
+output_labels.txt contains the classes of your images which were taken from each directory.
+output_graph.pb is the new model file with trained weight in the protobuf format.  You will be using this file for prediction in the next step.
 
 ## 1.1 Predict
 
