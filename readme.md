@@ -1,7 +1,7 @@
 # Transfer Learning - How to leverage pretrained model to speed up training for machine learning
 <div style="text-align:right">By Hide Inada</div>
 
-## 0. Problem statement
+## Problem statement
 Imagine you are a machine learning engineer working for a photo sharing website.
 One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
 
