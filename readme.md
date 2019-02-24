@@ -18,6 +18,8 @@ Is there a way to do this?
 
 Yes, possibly.  Transfer training may work for you.
 
+<img src="assets/images/manager.png" width="400px" align="middle">
+
 <hr>
 
 This article consists of three parts.  In the first part, I will discuss the concept of transfer learning.  In the second part, I will go over the actual steps to train your model and predict using transfer learning.  In the third part, I will walk you through the inside of the script that TensorFlow team provided for transfer learning for you to be able to customize the script if needed.
