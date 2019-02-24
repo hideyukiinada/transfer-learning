@@ -5,7 +5,7 @@ The dataset is available at:
 https://www.vision.ee.ethz.ch/datasets_extra/food-101/
 
 Head over to the page, and download the dataset to your local disk.
-Total number of images is 101,000.
+The dataset has 101 classes of food images and the total number of images is 101,000.
 
 Once you download the food-101.tar.gz, you can expand by typing:
 ```
