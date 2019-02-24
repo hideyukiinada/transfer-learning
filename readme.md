@@ -198,8 +198,8 @@ TensorFlow team uses the word "module" to mean "a self-contained piece of a Tens
 Here are the main items that are done in code.
 1. Check for command line arguments
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
-1. Ensure a directory to store an intermediate graph exists (prepare_file_system())
-1. Read the image directory and subdirectories, get the list of files in each subdirectory and split the file into training, validation, test set per the ratio specified in command line arguments (create_image_lists()).
+1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
+1. Read the image directory and subdirectories, get the list of JPEG files in each subdirectory and split the set of files into training, validation, test set per the ratio specified in command line arguments (create_image_lists()). Logic to split the datasets is to calculate the hash value of each file name.  Each hash is converted to an int and gets mapped to the 0-100 range to compare against validation and test set ratios for allocation.
 1. Determine any command line argument is specified for data augmentation (should_distort_images())
 1. Load module spec of the module that you want to instantiate (hub.load_module_spec())
 1. Load the module, and get the last layer of the module (create_module_graph())
