@@ -5,7 +5,7 @@
 Imagine you are a machine learning engineer working for a photo sharing website.
 One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page, and could raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
 
-<img src="assets/images/burger.png" width="400px">
+<img src="assets/images/burger.png" width="400px" align="middle">
 
 The problem is that your manager's manager really wants this feature yesterday and your manager was not able to push back so now he is asking you if there is anyway you can come up with something.
 Aside from recommending to your manager that your manager and your manager's manager should take the Management 101 class, is there anything you can do to meet this crazy deadline?
@@ -23,10 +23,12 @@ However, there is a way to short circuit the training process.
 
 This is called transfer learning.
 
-<img src="assets/images/conventional_net.png" width="400px">
+<img src="assets/images/conventional_net.png" width="400px" align="middle">
 
 
-<img src="assets/images/transfer.png" width="400px">
+
+<img src="assets/images/transfer.png" width="420px" align="middle">
+
 
 
 This is based on the assumption that a deep neural network is trained to extract features in various layers.
