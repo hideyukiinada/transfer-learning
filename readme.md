@@ -222,7 +222,24 @@ Here are the main items that are done in code.
 1. If specified in command line, save the labels to the file system
 1. If specified in command line, save the model to be served with [TensorFlow serving](https://www.tensorflow.org/tfx/serving/) (export_model()). Note that this function is using now deprecated [tf.saved_model.simple_save () function](https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save), so you may want to update in the future.
 
-# 3.4. Front prop
+## Module
+By default, a default module to be downloaded and retrained is set to https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1.  This can be overridden with the --tfhub_module argument:
+
+```
+  parser.add_argument(
+      '--tfhub_module',
+      type=str,
+      default=(
+          'https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1'),
+      help="""\
+      Which TensorFlow Hub module to use. For more options,
+      search https://tfhub.dev for image feature vector modules.\
+      """)
+```
+
+[TensorFlow Hub website](https://tfhub.dev/) provides various modules for you to retrain if you want to try other modules.
+
+## 3.4. Front prop
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
 It is done in two phases.
 
