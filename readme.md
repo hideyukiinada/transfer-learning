@@ -201,7 +201,7 @@ Here are the main items that are done in code.
 1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
 1. Read the image directory and subdirectories, get the list of JPEG files in each subdirectory and split the set of files into training, validation, test set per the ratio specified in command line arguments (create_image_lists()). Logic to split the datasets is to calculate the hash value of each file name.  Each hash is converted to an int and gets mapped to the 0-100 range to compare against validation and test set ratios for allocation.
 1. Determine any command line argument is specified for data augmentation (should_distort_images())
-1. Download or read the module from local cache??? .  Instantiate ModuleSpec with the downloaded model and path to the downloaded weights ((hub.load_module_spec())).  See atomic_download() defined in tensorflow_hub/resolver.py for downloading details. 
+1. If not found in local cache already, download the module files.  Instantiate ModuleSpec with the downloaded model and path to the downloaded weights ((hub.load_module_spec())).  See atomic_download() defined in tensorflow_hub/resolver.py for downloading details. 
 1. Instantiate the Module object from ModuleSpec and get the last layer of the module (create_module_graph())
 1. Add the output layer for classification of our data (add_final_retrain_ops())
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
