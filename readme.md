@@ -235,7 +235,8 @@ Here are the main items that are done in code. Shown in parentheses are the name
 1. If specified in command line, save the model to be served with [TensorFlow serving](https://www.tensorflow.org/tfx/serving/) (export_model()). Note that this function is using now deprecated [tf.saved_model.simple_save () function](https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save), so you may want to update in the future.
 
 ## 3.4. Module
-By default, a default module to be downloaded and retrained is set to https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1.  This can be overridden with the --tfhub_module argument:
+By default, a default module to be downloaded and re-trained is set to https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1.  
+This can be overridden with the --tfhub_module argument:
 
 ```
   parser.add_argument(
@@ -249,17 +250,17 @@ By default, a default module to be downloaded and retrained is set to https://tf
       """)
 ```
 
-[TensorFlow Hub website](https://tfhub.dev/) provides various modules for you to retrain if you want to try other modules.
+[TensorFlow Hub website](https://tfhub.dev/) provides various modules for you to re-train if you want to try other modules.
 
 Before calling retrain.py, I specified the TFHUB module cache directory in the script:
 ```
 export TFHUB_CACHE_DIR=/tmp/food101/module_cache
 ```
 
-In tensorflow_hub/resolver.py, there is a function called tfhub_cache_dir(), and this retrieves the directory from this environment variable if defined. (You will find this file under your virtualenv's site-packages directory if you are using virtualenv).
+In tensorflow_hub/resolver.py, there is a function called tfhub_cache_dir(), and this retrieves the name of the cache directory from this environment variable if defined. (You will find this file under your virtualenv's site-packages directory if you are using virtualenv).
 
 
-So the /tmp/food101/module_cache contains:
+Once the script is run, the /tmp/food101/module_cache will contain:
 
 ```
 /tmp/food101/module_cache/11d9faf945d073033780fd924b2b09ff42155763
@@ -275,18 +276,18 @@ So the /tmp/food101/module_cache contains:
 
 ## 3.5. Front propagation
 It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
-It is done in two phases.
+It splits front propagation to two phases:
 
 The first part is to calculate the bottleneck layer values of each image.  Unless you are using data augmentation, this is done only once for the script execution in a function run_bottleneck_on_image().  The values are cached on the file system.
 
 <img src="assets/images/transfer_retrain_py.png" width="420px" align="middle">
 
-Second part is to use these values as the input to a dense layer neural network and train.  This is shown in the green box.
-Since you will be updating the weights for the last layer in a loop, this is a huge time saver.
+The second part is to use these values as the input to a dense layer neural network and train.  This is shown in the green box.
+Since you will be only updating the weights for the last layer in a loop, this is a huge time saver.
 
 ## 3.6 Matrix and biases definition for the last layer
 
-A matrix and the bias for the last layer is defined add_final_retrain_ops():
+A matrix and biases for the last layer are defined add_final_retrain_ops():
 
 ```
   layer_name = 'final_retrain_ops'
@@ -307,6 +308,8 @@ A matrix and the bias for the last layer is defined add_final_retrain_ops():
 
   final_tensor = tf.nn.softmax(logits, name=final_tensor_name)
 ```
+
+As you can see, this is a very straightforward operation.
 
 # 4. Final words
 Hopefully, this article will help you with your classification task in the future.  If you have any feedback, please feel free to reach out to me.
