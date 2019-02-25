@@ -31,6 +31,7 @@ In the first part, I will discuss the concept of transfer learning.  In the seco
 If you decide to use any product or dataset mentioned in this article, it is your responsibility to verify that your use is in compliance with the license terms of each product and/or dataset.  
 
 <hr>
+
 ## 1. Concept
 It takes significant machine resources and time to train the model especially when there are so many layers.  For example, Inception-v3 has 42 layers [1].  However, there is a way to short circuit the training process. This is called transfer learning.
 Shown below is a conventional network architecture:
