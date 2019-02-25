@@ -9,7 +9,7 @@ One morning, your manager comes to you and asks you to develop a feature that cl
 
 In this example, a local burger joint's ad is displayed on the right after your ML code classifies the photo as a burger.  Since you are not a front-end engineer, as long as you return the burger class, presentation will be taken care of by another team. 
 
-The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss that he knows AI.  Unfortunately, your manager does not have an experience in machine learning, so he doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  He assumed that somehow this can be done easily by you.
+The problem is that your manager's manager is new to the company. He does not really know much about machine learning, but really wants this feature now to impress his new boss that he knows AI.  Unfortunately, your manager does not have  experience in machine learning, so he doesn't really know how long a machine learning project can take, so he didn't think to ask for more time.  He assumed that somehow this can be done easily by you.
 
 He said: _"It shouldn' be that difficult for you, right!"_
 
