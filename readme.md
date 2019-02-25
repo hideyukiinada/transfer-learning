@@ -43,7 +43,7 @@ Once loss is calculated, gradient of the loss is propagated all the way back to 
 
 This training process is done in a loop, and iterations continue until the loss becomes reasonably small. Since there are a lot of calculations involved, the process can take days or even longer.
 
-In transfer learning, instead of training the model from scratch, you reuse the model that was already trained.  Most likely, you will be using the model, which has been trained by someone else with adequite hardware resources.
+In transfer learning, instead of training the model from scratch, you reuse the model that was already trained.  Most likely, you will be using the model, which has been trained by someone else with adequate hardware resources.
 
 In the below diagram, red dotted line shows the part that can be reused.
 
@@ -72,7 +72,7 @@ The whole training process can be done in 1 hour depending on how large your dat
 In this section, I will go over details of the two high-level steps.
 
 ## 2.1. Set up the dataset on your file system
-retrain.py expects that image data is stored in a multi-level directory structure.  Here is the two-level directory structure that I recommand:
+retrain.py expects that image data is stored in a multi-level directory structure.  Here is the two-level directory structure that I recommend:
 
 ```
 top image directory
@@ -225,7 +225,7 @@ Here are the main items that are done in the script. Shown in parentheses are th
 1. Train by repeating the following steps:
     1. If data augmentation is specified, read each image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
     2. If not, read the cached bottleneck layer values for each image from the file system (get_random_cached_bottlenecks) 
-    3. Feed the bottleneck values and the ground-truth to the graph and optimize by using gradienct descent as defined in add_final_retrain_ops
+    3. Feed the bottleneck values and the ground-truth to the graph and optimize by using gradient descent as defined in add_final_retrain_ops
     4. On the pre-determined interval, calculation training accuracy and validation accuracy
     5. On the pre-determined interval, save intermediate graph and weights
 1. Once the training is done, save weights
