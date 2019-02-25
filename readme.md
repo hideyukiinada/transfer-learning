@@ -218,7 +218,7 @@ Here are the main items that are done in the script. Shown in parentheses are th
 1. Add the output layer to classify your custom dataset (add_final_retrain_ops())
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
 1. If any data augmentation option is specified on the command line, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
-1. If data augmentation option was not specified, front propagate the image data through the network all the way up to the bottleneck layer and writes the values to the file system (cache_bottlenecks)
+1. If data augmentation option was not specified, forward propagate the image data through the network all the way up to the bottleneck layer and writes the values to the file system (cache_bottlenecks)
 1. Add operations to calculate accuracy by comparing predictions and ground-truth and taking the mean (add_evaluation_step())
 1. Consolidate stats that you want to show in TensorBoard and direct the stats log output to the file system by instantiating FileWriter objects
 1. Instantiate tf.train.Saver to prepare for saving weights during training
@@ -274,9 +274,9 @@ Once the script is run, the /tmp/food101/module_cache will contain:
 
 ```
 
-## 3.5. Front propagation
-It may not be clear from the overview of the steps but what retrain.py does is clever in terms of front propagation.
-It splits front propagation to two phases:
+## 3.5. Forward propagation
+It may not be clear from the overview of the steps but what retrain.py does is clever in terms of forward propagation.
+It splits forward propagation to two phases:
 
 The first part is to calculate the bottleneck layer values of each image.  Unless you are using data augmentation, this is done only once for the script execution in a function run_bottleneck_on_image().  The values are cached on the file system.
 
