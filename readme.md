@@ -1,4 +1,4 @@
-# Transfer Learning - How to leverage pretrained model to speed up training for machine learning
+# Transfer Learning - How to leverage a pretrained model to speed up training for machine learning
 <div style="text-align:right">By Hide Inada</div>
 
 ## Problem statement
