@@ -1,4 +1,4 @@
-# Transfer Learning - How to leverage a pretrained model to speed up training for machine learning
+# Transfer Learning - How to leverage a pre-trained model to speed up training for machine learning
 <div style="text-align:right">By Hide Inada</div>
 
 ## Problem statement
@@ -56,12 +56,12 @@ So what exactly does train the last output layer mean?
 If the bottleneck layer is a plain-vanilla neural network layer (aka dense layer or a fully connected layer), then there is a matrix and a set of weights to be added as biases.  So you will be training these two unless you decide to add something extra.  In the diagram above, a green box with "Mat" indicates this matrix.  Biases are not shown in the diagram.
 
 So in summary what you need is:
-1. A model with pretrained weights
+1. A model with pre-trained weights
 1. A new layer with a matrix and biases to classify your images
 
-For the first one, the good news is that the TensorFlow team has made various pretrained models available for this on their website called TensorFlow Hub.
+For the first one, the good news is that the TensorFlow team has made various pre-trained models available for this on their website called TensorFlow Hub.
 
-For the second one, they also made a script called "retrain.py" available to automate the creation and training of this new layer. This script also automatically downloads the pretrained weights to your computer, so pretty much what you need to do is just the following two steps:
+For the second one, they also made a script called "retrain.py" available to automate the creation and training of this new layer. This script also automatically downloads the pre-trained weights to your computer, so pretty much what you need to do is just the following two steps:
 
 1) Set up a dataset with images on your file system
 2) Run retrain.py
