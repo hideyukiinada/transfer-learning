@@ -39,7 +39,7 @@ Shown below is a conventional network architecture:
 <img src="assets/images/conventional_net.png" width="400px" align="middle">
 
 Input to the network propagates layer by layer all the way to the output layer.
-Once loss is calculated, gradient of the loss is propagated all the way back to the first layer after the input.  In the back propagation process, weights for each layer is recalculate.
+Once loss is calculated, gradient of the loss is propagated all the way back to the first layer after the input.  In the back propagation process, weights for each layer is recalculated.
 
 This training process is done in a loop, and iterations continue until the loss becomes reasonably small. Since there are a lot of calculations involved, the process can take days or even longer.
 
@@ -207,7 +207,7 @@ As I am going over some part of the code, here is the license for the code by th
 TensorFlow team uses the word "module" to mean "a self-contained piece of a TensorFlow graph, along with its weights" &#91;3&#93;.  In this section, I will be following that convention.
 
 ## 3.3. Overview of high-level items
-Here are the main items that are done in code. Shown in parentheses are the name of the functions that correspond to the task:
+Here are the main items that are done in the script. Shown in parentheses are the name of the functions that correspond to the task:
 1. Check for command line arguments
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
 1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
@@ -222,7 +222,7 @@ Here are the main items that are done in code. Shown in parentheses are the name
 1. Add operations to calculate accuracy by comparing predictions and ground-truth and taking the mean (add_evaluation_step())
 1. Consolidate stats that you want to show in TensorBoard and direct the stats log output to the file system by instantiating FileWriter objects
 1. Instantiate tf.train.Saver to prepare for saving weights during training
-1. Train by repeat the following steps
+1. Train by repeating the following steps:
     1. If data augmentation is specified, read each image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
     2. If not, read the cached bottleneck layer values for each image from the file system (get_random_cached_bottlenecks) 
     3. Feed the bottleneck values and the ground-truth to the graph and optimize by using gradienct descent as defined in add_final_retrain_ops
