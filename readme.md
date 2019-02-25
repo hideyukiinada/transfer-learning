@@ -39,7 +39,7 @@ Shown below is a conventional network architecture:
 <img src="assets/images/conventional_net.png" width="400px" align="middle">
 
 Input to the network propagates layer by layer all the way to the output layer.
-Once loss is calculated, gradient of the loss is probagated all the way back to the first layer after the input.  In the back propagation process, weights for each layer is recalculate.
+Once loss is calculated, gradient of the loss is propagated all the way back to the first layer after the input.  In the back propagation process, weights for each layer is recalculate.
 
 This training process is done in a loop, and iterations continue until the loss becomes reasonably small. Since there are a lot of calculations involved, the process can take days or even longer.
 
