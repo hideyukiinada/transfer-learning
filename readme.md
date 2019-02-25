@@ -3,7 +3,7 @@
 
 ## Problem statement
 Imagine you are a machine learning engineer working for a photo sharing website.
-One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show a restaurant nearby that serves food in that category of the photo on the page. This would raise an ad revenue from restaurants.  Here is the mock up of the page that the manager showed you:
+One morning, your manager comes to you and asks you to develop a feature that classifies food images into categories so that your company's website can show nearby restaurants that serve food in the category of the photo on the page. This would raise ad revenue from restaurants.  Here is a mock up of the page that the manager showed you:
 
 <img src="assets/images/burger.png" width="400px" align="middle">
 
