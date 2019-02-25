@@ -211,27 +211,27 @@ Here are the main items that are done in code. Shown in parentheses are the name
 1. Check for command line arguments
 1. Clean up TensorBoard log directory and ensure it exists (prepare_file_system())
 1. Ensure a directory to store an intermediate graph exists if store frequency is specified as greater than 0 (prepare_file_system())
-1. Read the image directory and subdirectories, get the list of JPEG files in each subdirectory and split the set of files into training, validation, test set per the ratio specified in command line arguments (create_image_lists()). Logic to split the datasets is to calculate the hash value of each file name.  Each hash is converted to an int and gets mapped to the 0-100 range to compare against validation and test set ratios for allocation.
-1. Determine any command line argument is specified for data augmentation (should_distort_images())
-1. If not found in local cache already, download the module files.  Instantiate ModuleSpec with the downloaded model and path to the downloaded weights ((hub.load_module_spec())).  See atomic_download() defined in tensorflow_hub/resolver.py for downloading details. 
+1. Read the image directory and subdirectories, get the list of JPEG files in each subdirectory and split the set of files into training, validation, test sets per the ratio specified in command line arguments (create_image_lists()). Logic to split the dataset is to calculate the hash value of each file name.  Each hash is converted to an int and gets mapped to the 0-100 range to compare against validation and test set ratios specified in command line.
+1. Determine if any command line argument is specified for data augmentation (should_distort_images())
+1. Unless found in local cache already, download the module files from the TensorFlow Hub website.  Instantiate ModuleSpec with the downloaded model and path to the downloaded weights ((hub.load_module_spec())).  _See atomic_download() defined in tensorflow_hub/resolver.py for downloading details._ 
 1. Instantiate the Module object from ModuleSpec and get the last layer of the module (create_module_graph())
-1. Add the output layer for classification of our data (add_final_retrain_ops())
+1. Add the output layer to classify your custom dataset (add_final_retrain_ops())
 1. Add operations to resize the JPEG data to the size that the module expects (add_jpeg_decoding())
-1. If any data augmentation option is specified, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
+1. If any data augmentation option is specified on the command line, crop, flip horizontally and/or adjust brightness of the image (add_input_distortions)
 1. If data augmentation option was not specified, front propagate the image data through the network all the way up to the bottleneck layer and writes the values to the file system (cache_bottlenecks)
 1. Add operations to calculate accuracy by comparing predictions and ground-truth and taking the mean (add_evaluation_step())
 1. Consolidate stats that you want to show in TensorBoard and direct the stats log output to the file system by instantiating FileWriter objects
 1. Instantiate tf.train.Saver to prepare for saving weights during training
 1. Train by repeat the following steps
-    1. If data augmentation is specified, read the image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
+    1. If data augmentation is specified, read each image file from the file system, apply data augmentation, feed forward to the bottleneck layer (get_random_distorted_bottlenecks())
     2. If not, read the cached bottleneck layer values for each image from the file system (get_random_cached_bottlenecks) 
-    3. Feed the bottleneck values and the ground-truth to the graph and optimize by gradienct descent as defined in add_final_retrain_ops
-    4. For pre-determined interval, calculation training accuracy and validation accuracy
-    5. For pre-determined interval, save graph and weights
+    3. Feed the bottleneck values and the ground-truth to the graph and optimize by using gradienct descent as defined in add_final_retrain_ops
+    4. On the pre-determined interval, calculation training accuracy and validation accuracy
+    5. On the pre-determined interval, save intermediate graph and weights
 1. Once the training is done, save weights
 1. Predict against the test set to measure accuracy (run_final_eval())
 1. Serialize the graph and save to the file system (save_graph_to_file())
-1. If specified in command line, save the labels to the file system
+1. If specified in command line, save labels to the file system
 1. If specified in command line, save the model to be served with [TensorFlow serving](https://www.tensorflow.org/tfx/serving/) (export_model()). Note that this function is using now deprecated [tf.saved_model.simple_save () function](https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save), so you may want to update in the future.
 
 ## 3.4. Module
