@@ -1,4 +1,4 @@
-# Note on label_image.py script (DRAFT???)
+# How do you classify an image running label_image.py against a frozen TensorFlow model
 By Hide Inada
 
 # Goals
