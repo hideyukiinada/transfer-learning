@@ -3,9 +3,9 @@ By Hide Inada
 
 # Goals
 This article is a follow up on my previous article on transfer learning.
-As I mentioned in the article, once you are done with re-training a model with your custom classes, you can use label_image.py to classify your image.  The model is called frozen as weight variables have been replaced with constants and you can no longer train this model.  However, it is good for prediction.
+As I mentioned in that article, once you are done with re-training a model with your custom classes, you can use label_image.py to classify your image.  The model is called frozen as weight variables have been replaced with constants and you can no longer train this model.  However, it is good for prediction.
 
-I thought it may be helpful to walk you through the code for some readers as there are a few sections of the code that may not seem straightforward.
+I thought it may be helpful to walk through the code for some readers as there are a few sections of the code that may not seem straightforward.
 
 # Overall Structure
 Overall structure of the code is the following:
