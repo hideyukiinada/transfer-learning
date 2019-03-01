@@ -178,85 +178,80 @@ You want to change this to 101, so you call np.squeeze().
 
 # 5. Picking top 5 from the predicted result
 If you have 5 classes, the result array contains something like this.
-
+```
 0.001
 0.600
 0.002
 0.300
 0.098
+```
+If we combine this with the label and class ID for each label, you will get:
 
-for
+| Probability | label | class ID |
+|---|---|---|
+| 0.001 | bear | 0 |
+| 0.600 | lion | 1 |
+| 0.002 | elephant | 2 |
+| 0.300 | cat | 3 |
+| 0.098 | dog | 4 |
 
-bear (class ID = 0)
-lion (class ID = 1)
-elephant (class ID = 2)
-cat (class ID = 3)
-dog (class ID = 4)
+In this case, you want to pick top 3 based on the probability, so the final result you want to get is this:
 
-In this case, you want to pick top 3, which will be
+| Probability | label | class ID |
+|---|---|---|
+| 0.600 | lion | 1 |
+| 0.300 | cat | 3 |
+| 0.098 | dog | 4 |
 
-lion (class ID=1, 0.6)
-cat (class ID=3, 0.3)
-dog (class ID=4, 0.098)
+Let's figure out how we can do this from the original 5 elemen array step by step:
 
-Let's do this step by step:
-
-First, you want to map the class IDs for each probability.
-In this case, it's easy as prediction was already output by the class ID:
-
-0
-1
-2
-3
-4
-
-Now you want to sort this class IDs by the probability.
-In numpy, there is a function called argsort which does this.
+First, you want to sort the class IDs by the probability.
+In numpy, there is a function called argsort which sort indices based on the value each index points to.
 argsort sorts an array by ascending order,and returns the original index for each number.
-This may be hard to understand, so let's go with an example, and this should be clear to you after going through
-this example.
-The smallest probability is 0.001 for class ID=0 so 0 comes first.
 
-Output
-0
+Let's take a look at a simple example:
+```
+>>> a = np.array([10, 1, 5])
+>>> type(a)
+<class 'numpy.ndarray'>
+>>> b = a.argsort()
+>>> b
+array([1, 2, 0])
+```
 
-Next smallest probability is 0.002 for class ID=2
+In this case, in the array 'a', 1 is the smallest number with the index 1.
+Next small number is 5 at index 2, the least small number is 10 at index 0, so argsort returns 1, 2, 0.
 
-Output
-0
-2
+Applying this to our example, class ID is the same as the index into the array.  Therefore if you sort the indices by the probability value, we will get:
+| Probability | label | class ID |
+|---|---|---|
+| 0.001 | bear | 0 |
+| 0.002 | elephant | 2 |
+| 0.098 | dog | 4 |
+| 0.300 | cat | 3 |
+| 0.600 | lion | 1 |
 
-Next smallest probability is 0.098 for class ID=4
-Output
-0
-2
-4
-
-Next smallest probability is 0.3 for class ID=3
-0
-2
-4
-3
-
-And the last one is the largest probability 0.6 with class ID=1
-Output is
+(In actual code, you get only the array of index like below so you'll see, but I'm providing the values in a table for clarity.)
+```
 0
 2
 4
 3
 1
+```
 
 Since you are interested in the top 3, you pick the last 3 entries :
 
-4 => 3rd largest
-3 => 2nd largest
-1 => Top
+| 0.098 | dog | 4 |
+| 0.300 | cat | 3 |
+| 0.600 | lion | 1 |
 
-Finally, you reverse the sequence to get:
+Finally, you need to reverse the sequence to get:
 1
 3
 4
 
+These two actions are done in 
 
 ```
   top_k = results.argsort()[-5:][::-1]
@@ -274,11 +269,11 @@ Finally, you reverse the sequence to get:
 
 ```
 
+# Final words
+Hopefully this short walk-through help you better understand what is happening in label_image.py for you to
+leverage this code for your own application.  If you have any feedback, please feel free to reach out to me.
 
-
-
-
-
+<hr>
 # License
 This is the license for the code that appears in this article:
 
