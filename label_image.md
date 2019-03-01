@@ -135,7 +135,7 @@ In order to do that you need to :
 * know the name of the node in the graph.
 * get the reference to the node
 
-Input layer's name was set to Placeholder in retrain.py and you specified this when you run label_image.py
+Input layer's name was set to Placeholder in retrain.py and you specified this when you run label_image.py. 
 Since import namespace is added, the name is import/Placeholder.
 
 Output layer's name is import/final_result.
