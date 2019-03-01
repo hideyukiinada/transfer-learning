@@ -144,15 +144,14 @@ tfGraph.get_operation_by_name() method returns a reference to the graph, which i
 in TensorFlow terminology, so calling the method once for input and output, input_operation and output_operation
 will contain reference to input and output nodes.
 
-Session.run expects tensor for evaluation and input as feeddict (cite reference).
-Placeholder node contains a member variable called outputs which is a Python list. Actual
-tensor for image data corresponds to the first element of the list so you put
-input_operation.outputs[0] as the feed dict key.
+To fetch a value in [tf.Session.run](https://www.tensorflow.org/api_docs/python/tf/Session)(tf.Tensor.), you specify a tensor in fetches and feed_dict arguments.
+To get to the tensor which holding the image data value associated with the Placeholder node, you can specify the member variable called outputs of the node. This variable is a Python list, and the actual tensor for image data corresponds to the first element of the list.
+so you put input_operation.outputs[0] as the feed dict key.
 
-output_operation.outputs[0] contains the tensor for prediction for the same reason.
+Similarly, output_operation.outputs[0] contains the tensor named "input/final_result:0" to be fetched to return the value of predicted result.
 
 Once the result is returned, it is in an ndarray with the shape (1, 101) with 1 indicating that the batch size was 1.
-You want to change this to 101, so you call np.squeeze().
+You want to change this to be a 1-dimensional array with 101 elements, so you call np.squeeze().
 
 ```
 
