@@ -148,8 +148,8 @@ so you put input_operation.outputs[0] as the feed dict key.
 
 Similarly, output_operation.outputs[0] contains the tensor named "input/final_result:0" to be fetched to return the value of predicted result.
 
-Once the result is returned, it is in an ndarray with the shape (1, 101) with 1 indicating that the batch size was 1.
-You want to change this to be a 1-dimensional array with 101 elements, so you call np.squeeze().
+Once the result is returned, it is in an ndarray with the shape (1, <number of classes>) with 1 indicating that the batch size was 1.  For example, if you have 10 classes, the shape will be (1, 10).
+You want to change this to be a 1-dimensional array by getting rid of the first axis which is for the batch size, so you need to call np.squeeze().
 
 ```
 
