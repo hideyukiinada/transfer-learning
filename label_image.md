@@ -136,9 +136,7 @@ In order to do that you need to :
 * get the reference to the node
 
 Input layer's name was set to Placeholder in retrain.py and you specified this when you run label_image.py. 
-Since import namespace is added, the name is import/Placeholder.
-
-Output layer's name is import/final_result.
+Since import namespace is added, the name is _import/Placeholder_. Output layer's name is _import/final_result_.
 
 tfGraph.get_operation_by_name() method returns a reference to the graph, which is called operation
 in TensorFlow terminology, so calling the method once for input and output, input_operation and output_operation
