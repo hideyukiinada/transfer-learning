@@ -285,11 +285,13 @@ Once you get the indices which again are the same as class IDs in this case for 
 ```
 
 # Final words
-Hopefully this short walk-through help you better understand what is happening in label_image.py for you to
+Hopefully this short walk-through will help you better understand what is happening in label_image.py for you to
 leverage this code for your own application.  If you have any feedback, please feel free to reach out to me.
 
 <hr>
+
 # License
+
 This is the license for the code that appears in this article:
 
 ```
