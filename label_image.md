@@ -1,4 +1,4 @@
-# How do you classify an image running label_image.py against a frozen TensorFlow model
+# How do you classify an image against a frozen TensorFlow model - Code Walk-Through of label_image.py 
 By Hide Inada
 
 # Goals
@@ -178,6 +178,7 @@ You want to change this to 101, so you call np.squeeze().
 
 # 5. Picking top 5 from the predicted result
 If you have 5 classes, the result array contains something like this.
+
 ```
 0.001
 0.600
@@ -185,6 +186,7 @@ If you have 5 classes, the result array contains something like this.
 0.300
 0.098
 ```
+
 If we combine this with the label and class ID for each label, you will get:
 
 | Probability | label | class ID |
@@ -223,6 +225,7 @@ In this case, in the array 'a', 1 is the smallest number with the index 1.
 Next small number is 5 at index 2, the least small number is 10 at index 0, so argsort returns 1, 2, 0.
 
 Applying this to our example, class ID is the same as the index into the array.  Therefore if you sort the indices by the probability value, we will get:
+
 | Probability | label | class ID |
 |---|---|---|
 | 0.001 | bear | 0 |
@@ -242,6 +245,8 @@ Applying this to our example, class ID is the same as the index into the array. 
 
 Since you are interested in the top 3, you pick the last 3 entries :
 
+| Probability | label | class ID |
+|---|---|---|
 | 0.098 | dog | 4 |
 | 0.300 | cat | 3 |
 | 0.600 | lion | 1 |
