@@ -143,7 +143,7 @@ in TensorFlow terminology, so calling the method once for input and output, inpu
 will contain a reference to input and output nodes.
 
 To fetch a value using [tf.Session.run](https://www.tensorflow.org/api_docs/python/tf/Session), you specify a tensor in fetches and feed_dict arguments.
-To get to the tensor holding the image data value associated with the Placeholder node, you can specify the member variable called outputs of the node. This variable is a Python list, and the actual tensor for image data corresponds to the first element of the list.
+To get to the tensor holding the image data value associated with the Placeholder node, you can specify the member variable called _outputs_ of the node. This variable is a Python list, and the actual tensor for image data corresponds to the first element of the list.
 so you put input_operation.outputs[0] as the feed dict key.
 
 Similarly, output_operation.outputs[0] contains the tensor named "input/final_result:0" to be fetched to return the value of predicted result.
