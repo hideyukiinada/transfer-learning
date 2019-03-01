@@ -54,6 +54,19 @@ This is for binary.  [A TensorFlow documentation page](https://www.tensorflow.or
 
 # 2. Loading the class to label map file
 
+By default, retrain.py writes class ID to label mapping file to /tmp/output_labels.txt.
+
+If you open a file with 5 classes for animals, it shoud look like this:
+```
+bear
+cat
+dog
+elephant
+lion
+```
+
+bear maps to ID=0, cat maps to ID=1.
+
 ```
 
 def load_labels(label_file):
@@ -64,16 +77,15 @@ def load_labels(label_file):
   return label
 
 ```
-
-
+You can consider [tf.gfile.Gfile](https://www.tensorflow.org/api_docs/python/tf/io/gfile/GFile) as an equivalent of a Python's open function.  The reference page discusses some benefits over using Python's IO, but I haven't had a chance to run a benchmark to verify.
 
 # 2. Reading the image
 This part is straightforward.
-The below code just reads the file (bmp, gif, png, jpg) and reads the file.
+The below code just open an image file in the bmp, gif, png or jpg format and reads the file.
 
 Input image dimension is set to 299 by 299 pixels for Inception-v3 model.
 
-Here are the things that happen
+Here are the things that happen:
 
 Open and read the image file to the buffer???
 Decode the data as png, gif, bmp or jpeg based on the file extention???
