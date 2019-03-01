@@ -65,7 +65,7 @@ Add one more dimension. 1024x800x3 becomes 1x1024x800x3
 Resize image 1x299x299x3 using bilinear option. (check to see if the doc says anything aboub bilinear, if not
 mention pillow or opencv's reference).
 Normalize data. By default, shift the value from 0-255 to 0-1
-Run the session to actually read the data.
+Run the session to actually read the data and return in a numpy ndarray.
 
 ```
 def read_tensor_from_image_file(file_name,
@@ -118,6 +118,25 @@ In order to do that you need to :
 know the name of the node in the graph.
 get the reference to the node
 
+Input layer's name was set to Placeholder in retrain.py and you specified this when you run label_image.py
+Since import namespace is added, the name is import/Placeholder.
+
+Output layer's name is import/final_result.
+
+tfGraph.get_operation_by_name() method returns a reference to the graph, which is called operation
+in TensorFlow terminology, so calling the method once for input and output, input_operation and output_operation
+will contain reference to input and output nodes.
+
+Session.run expects tensor for evaluation and input as feeddict (cite reference).
+Placeholder node contains a member variable called outputs which is a Python list. Actual
+tensor for image data corresponds to the first element of the list so you put
+input_operation.outputs[0] as the feed dict key.
+
+output_operation.outputs[0] contains the tensor for prediction for the same reason.
+
+Once the result is returned, it is in an ndarray with the shape (1, 101) with 1 indicating that the batch size was 1.
+You want to change this to 101, so you call np.squeeze().
+
 ```
 
   graph = load_graph(model_file)
@@ -141,9 +160,102 @@ get the reference to the node
 ```
 
 # 5. Picking top 5 from the predicted result
+If you have 5 classes, the result array contains something like this.
+
+0.001
+0.600
+0.002
+0.300
+0.098
+
+for
+
+bear (class ID = 0)
+lion (class ID = 1)
+elephant (class ID = 2)
+cat (class ID = 3)
+dog (class ID = 4)
+
+In this case, you want to pick top 3, which will be
+
+lion (class ID=1, 0.6)
+cat (class ID=3, 0.3)
+dog (class ID=4, 0.098)
+
+Let's do this step by step:
+
+First, you want to map the class IDs for each probability.
+In this case, it's easy as prediction was already output by the class ID:
+
+0
+1
+2
+3
+4
+
+Now you want to sort this class IDs by the probability.
+In numpy, there is a function called argsort which does this.
+argsort sorts an array by ascending order,and returns the original index for each number.
+This may be hard to understand, so let's go with an example, and this should be clear to you after going through
+this example.
+The smallest probability is 0.001 for class ID=0 so 0 comes first.
+
+Output
+0
+
+Next smallest probability is 0.002 for class ID=2
+
+Output
+0
+2
+
+Next smallest probability is 0.098 for class ID=4
+Output
+0
+2
+4
+
+Next smallest probability is 0.3 for class ID=3
+0
+2
+4
+3
+
+And the last one is the largest probability 0.6 with class ID=1
+Output is
+0
+2
+4
+3
+1
+
+Since you are interested in the top 3, you pick the last 3 entries :
+
+4 => 3rd largest
+3 => 2nd largest
+1 => Top
+
+Finally, you reverse the sequence to get:
+1
+3
+4
 
 
+```
+  top_k = results.argsort()[-5:][::-1]
+```
 
+[-5:] corresponds to pick the last 5 items in the asending list.
+[::-1] correspoinds to reverse the top 5 list.
+
+```
+
+  top_k = results.argsort()[-5:][::-1]
+  labels = load_labels(label_file)
+  for i in top_k:
+    print(labels[i], results[i])
+
+```
 
 
 
