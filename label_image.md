@@ -90,8 +90,8 @@ Here are the things that happen:
 * Add an operation to open and read the image file to the buffer
 * Decode the data as png, gif, bmp or jpeg based on the file extention
 * Cast the uint8 data to float32 to prepare for the range conversion later
-* Add one more dimension in axis 0. 1024x800x3 becomes 1x1024x800x3
-* Resize image 1x299x299x3 to using bilinear interpolation.
+* Add one more dimension in axis 0. For example, if the original image has a dimention 1024x800x3, it will become 1x1024x800x3
+* Resize image 1x299x299x3 to using [bilinear interpolation](https://en.wikipedia.org/wiki/Bilinear_interpolation).
 * Normalize data. By default, shift the value from 0-255 to 0-1
 * Run the session to actually read the data and return in a numpy ndarray.
 
