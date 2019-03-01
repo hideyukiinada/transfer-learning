@@ -265,6 +265,19 @@ These two actions are done in
 [-5:] corresponds to pick the last 5 items in the asending list.
 [::-1] correspoinds to reverse the top 5 list.
 
+
+For example,
+```
+>>> a = np.array([1, 2, 3, 4, 5])
+>>> b = a[-3:]
+>>> b
+array([3, 4, 5])
+>>> c = b[::-1]
+>>> c
+array([5, 4, 3])
+```
+
+Once you get the indices which again are the same as class IDs in this case for top 5 result, you show the label and probability for each class ID using the following code:
 ```
 
   top_k = results.argsort()[-5:][::-1]
