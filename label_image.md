@@ -79,7 +79,7 @@ def load_labels(label_file):
 ```
 You can consider [tf.gfile.Gfile](https://www.tensorflow.org/api_docs/python/tf/io/gfile/GFile) as an equivalent of a Python's open function.  The reference page discusses some benefits over using Python's IO, but I haven't had a chance to run a benchmark to verify.
 
-# 2. Reading the image
+# 3. Reading an image file from the file system
 This part is straightforward.
 The below code just open an image file in the bmp, gif, png or jpg format and reads the file.
 
