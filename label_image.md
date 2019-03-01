@@ -3,7 +3,7 @@ By Hide Inada
 
 # Goals
 This article is a follow up on my previous article on transfer learning.
-As I mentioned in the article, once you are done with re-training a model with your custom classes, you can use label_image.py to classify your image.
+As I mentioned in the article, once you are done with re-training a model with your custom classes, you can use label_image.py to classify your image.  The model is called frozen as weight variables have been replaced with constants and you can no longer train this model.  However, it is good for prediction.
 
 I thought it may be helpful to walk you through the code for some readers as there are a few sections of the code that may not seem straightforward.
 
@@ -13,7 +13,7 @@ Overall structure of the code is the following:
 1. Load the model
 1. Load the class to label map file
 1. Read an image file from the file system
-1. Run the image by the model
+1. Run the image through the model
 1. Pick top 5 predicted classes
 
 # 1. Loading the model
@@ -127,7 +127,7 @@ def read_tensor_from_image_file(file_name,
 Note [tf.read_file](https://www.tensorflow.org/api_docs/python/tf/io/read_file) does not return the content upon
 invocation.  It returns a string Tensor.  Actual evaluation is done in sess.run() just like any other tensors.
 
-# 4. Running the image by the model
+# 4. Running the image through the model
 
 Once the model is loaded and the image file is read, you can run the image through the model.
 In order to do that you need to :
