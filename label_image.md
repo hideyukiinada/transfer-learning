@@ -202,11 +202,11 @@ In this case, you want to pick top 3 based on the probability, so the final resu
 | 0.300 | cat | 3 |
 | 0.098 | dog | 4 |
 
-Let's figure out how we can do this from the original 5 elemen array step by step:
+Let's figure out how we can do this from the original 5 element array step by step:
 
 First, you want to sort the class IDs by the probability.
-In numpy, there is a function called argsort which sort indices based on the value each index points to.
-argsort sorts an array by ascending order,and returns the original index for each number.
+In numpy, there is a function called argsort which sorts indices based on the value each index points to.
+argsort sorts an array by ascending order, and returns the original index for each number.
 
 Let's take a look at a simple example:
 ```
