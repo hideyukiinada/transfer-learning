@@ -87,14 +87,13 @@ Input image dimension is set to 299 by 299 pixels for Inception-v3 model.
 
 Here are the things that happen:
 
-Open and read the image file to the buffer???
-Decode the data as png, gif, bmp or jpeg based on the file extention???
-Cast the uint8 data to float32 to prepare for the range conversion later
-Add one more dimension. 1024x800x3 becomes 1x1024x800x3
-Resize image 1x299x299x3 using bilinear option. (check to see if the doc says anything aboub bilinear, if not
-mention pillow or opencv's reference).
-Normalize data. By default, shift the value from 0-255 to 0-1
-Run the session to actually read the data and return in a numpy ndarray.
+* Add an operation to open and read the image file to the buffer
+* Decode the data as png, gif, bmp or jpeg based on the file extention
+* Cast the uint8 data to float32 to prepare for the range conversion later
+* Add one more dimension in axis 0. 1024x800x3 becomes 1x1024x800x3
+* Resize image 1x299x299x3 to using bilinear interpolation.
+* Normalize data. By default, shift the value from 0-255 to 0-1
+* Run the session to actually read the data and return in a numpy ndarray.
 
 ```
 def read_tensor_from_image_file(file_name,
@@ -125,14 +124,16 @@ def read_tensor_from_image_file(file_name,
 
   return result
 ```
+Note [tf.read_file](https://www.tensorflow.org/api_docs/python/tf/io/read_file) does not return the content upon
+invocation.  It returns a string Tensor.  Actual evaluation is done in sess.run() just like any other tensors.
 
 # 4. Running the image by the model
 
 Once the model is loaded and the image file is read, you can run the image through the model.
 In order to do that you need to :
 
-know the name of the node in the graph.
-get the reference to the node
+* know the name of the node in the graph.
+* get the reference to the node
 
 Input layer's name was set to Placeholder in retrain.py and you specified this when you run label_image.py
 Since import namespace is added, the name is import/Placeholder.
