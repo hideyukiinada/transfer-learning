@@ -1,22 +1,24 @@
 # Note on label_image.py script (DRAFT???)
+By Hide Inada
 
-This is a follow up note on the transfer learning article.
-As I mentioned in the article, once you are done with re-training, you use label_image.py to classify your image.
+# Goals
+This article is a follow up on my previous article on transfer learning.
+As I mentioned in the article, once you are done with re-training a model with your custom classes, you can use label_image.py to classify your image.
 
-I thought it may be helpful for some readers as there are a few sections of the code that may not be straightforward.
+I thought it may be helpful to walk you through the code for some readers as there are a few sections of the code that may not seem straightforward.
 
-Overall structure of the code is
+# Overall Structure
+Overall structure of the code is the following:
 
 1. Load the model
-1. Read the image
+1. Load the class to label map file
+1. Read an image file from the file system
 1. Run the image by the model
-1. Pick top 5 from the predicted result
-
+1. Pick top 5 predicted classes
 
 # 1. Loading the model
-During the retraining, a model is saved as a protobuf file.
-In the process of saving, variables are also replaced with constants (??? mention the name of the function).  This makes sense as during prediction,
-you don't update weights anymore so they don't have to be variables.
+During the retraining, a model is saved as a [protobuf](https://developers.google.com/protocol-buffers/docs/pythontutorial) file on the file system.
+In retrain.py, after the training is done, just before the model is saved, variables are replaced with constants using [tf.graph_util.convert_variables_to_constants](https://www.tensorflow.org/api_docs/python/tf/graph_util/convert_variables_to_constants) (_See. save_graph_to_file function in retrain.py_).  This makes sense as during prediction, you don't update weights anymore so they don't have to be variables.
 
 Reading the binary protobuf file is a four-step process.
 
@@ -49,6 +51,21 @@ Also nodes that are restored will be in the "import/" namespace, you will need t
 graph_def.ParseFromString(f.read()) may look like this is a text operation, but it's not.
 This is for binary.
 ProtoBuf page also mentions this (??? add quote).
+
+# 2. Loading the class to label map file
+
+```
+
+def load_labels(label_file):
+  label = []
+  proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
+  for l in proto_as_ascii_lines:
+    label.append(l.rstrip())
+  return label
+
+```
+
+
 
 # 2. Reading the image
 This part is straightforward.
@@ -95,19 +112,6 @@ def read_tensor_from_image_file(file_name,
   result = sess.run(normalized)
 
   return result
-```
-
-# 3. Load label file
-
-```
-
-def load_labels(label_file):
-  label = []
-  proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
-  for l in proto_as_ascii_lines:
-    label.append(l.rstrip())
-  return label
-
 ```
 
 # 4. Running the image by the model
