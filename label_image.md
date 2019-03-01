@@ -81,7 +81,7 @@ You can consider [tf.gfile.Gfile](https://www.tensorflow.org/api_docs/python/tf/
 
 # 3. Reading an image file from the file system
 This part is straightforward.
-The below code just open an image file in the bmp, gif, png or jpg format and reads the file.
+The below code just opens an image file in the bmp, gif, png or jpg format and reads the file.
 
 Input image dimension is set to 299 by 299 pixels for Inception-v3 model.
 
