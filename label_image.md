@@ -56,7 +56,7 @@ This is for binary.  [A TensorFlow documentation page](https://www.tensorflow.or
 
 By default, retrain.py writes a class ID to label mapping file to /tmp/output_labels.txt.
 
-If you open a file with 5 classes for animals, it shoud look like this:
+For example, if you open the file with 5 classes for animals, it shoud look like this:
 ```
 bear
 cat
