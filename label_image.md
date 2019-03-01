@@ -138,11 +138,11 @@ In order to do that you need to :
 Input layer's name was set to Placeholder in retrain.py and you specified this when you run label_image.py. 
 Since import namespace is added, the name is _import/Placeholder_. Output layer's name is _import/final_result_.
 
-tfGraph.get_operation_by_name() method returns a reference to the graph, which is called operation
+tfGraph.get_operation_by_name() method returns a reference to the graph, which is called an operation
 in TensorFlow terminology, so calling the method once for input and output, input_operation and output_operation
-will contain reference to input and output nodes.
+will contain a reference to input and output nodes.
 
-To fetch a value in [tf.Session.run](https://www.tensorflow.org/api_docs/python/tf/Session)(tf.Tensor.), you specify a tensor in fetches and feed_dict arguments.
+To fetch a value using [tf.Session.run](https://www.tensorflow.org/api_docs/python/tf/Session), you specify a tensor in fetches and feed_dict arguments.
 To get to the tensor which holding the image data value associated with the Placeholder node, you can specify the member variable called outputs of the node. This variable is a Python list, and the actual tensor for image data corresponds to the first element of the list.
 so you put input_operation.outputs[0] as the feed dict key.
 
