@@ -18,7 +18,7 @@ Overall structure of the code is the following:
 
 # 1. Loading the model
 During the retraining, a model is saved as a [protobuf](https://developers.google.com/protocol-buffers/docs/pythontutorial) file on the file system.
-In retrain.py, after the training is done, just before the model is saved, variables are replaced with constants using [tf.graph_util.convert_variables_to_constants](https://www.tensorflow.org/api_docs/python/tf/graph_util/convert_variables_to_constants) (_See. save_graph_to_file function in retrain.py_).  This makes sense as during prediction, you don't update weights anymore so they don't have to be variables.
+In retrain.py, after the training is done, just before the model is saved, variables are replaced with constants using [tf.graph_util.convert_variables_to_constants](https://www.tensorflow.org/api_docs/python/tf/graph_util/convert_variables_to_constants) (_See. save_graph_to_file function in retrain.py_).  This makes sense as during prediction, you don't update weights any more so they don't have to be variables.
 
 Reading the binary protobuf file is a four-step process.
 
@@ -27,6 +27,7 @@ Reading the binary protobuf file is a four-step process.
 1. Convert to GraphDef object from data
 1. Convert to Graph object from GraphDef object
 
+Here is the code:
 
 ```
 def load_graph(model_file):
@@ -41,16 +42,15 @@ def load_graph(model_file):
   return graph
 ```
 
-graph_def.ParseFromString(f.read()) does step 2 and step 3.
-tf.import_graph_def(graph_def) does step 4.
-tf.import_graph_def(graph_def) restores nodes to the default graph so in this code, they are setting the graph
-object to default before calling tf.import_graph_def ???
+* graph_def.ParseFromString(f.read()) does step 2 and step 3.
+* [tf.import_graph_def(graph_def)](https://www.tensorflow.org/api_docs/python/tf/graph_util/import_graph_def) does step 4.
+* tf.import_graph_def(graph_def) restores nodes to the default graph so in this code, they are setting the graph
+object to the default graph before calling tf.import_graph_def.
 
-Also nodes that are restored will be in the "import/" namespace, you will need to refer to.
+Also nodes that are restored will have the prefix "import/" in their name.  You need to specify this when you refer to them.
 
 graph_def.ParseFromString(f.read()) may look like this is a text operation, but it's not.
-This is for binary.
-ProtoBuf page also mentions this (??? add quote).
+This is for binary.  [A TensorFlow documentation page](https://www.tensorflow.org/guide/extend/model_files) also mentions this.
 
 # 2. Loading the class to label map file
 
