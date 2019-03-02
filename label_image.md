@@ -47,6 +47,8 @@ def load_graph(model_file):
 * tf.import_graph_def(graph_def) restores nodes to the default graph so in this code, they are setting the graph
 object to the default graph before calling tf.import_graph_def.
 
+<img src="assets/images/load_model.png" width="400px">
+
 Restored nodes will have the prefix "import/" in their name.  You need to specify this when you refer to them.
 
 graph_def.ParseFromString(f.read()) may look like this is a text operation, but it's not.
