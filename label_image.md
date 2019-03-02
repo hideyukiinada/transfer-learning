@@ -58,7 +58,7 @@ This is for binary.  [A TensorFlow documentation page](https://www.tensorflow.or
 
 By default, retrain.py writes a class ID to label mapping file to /tmp/output_labels.txt.
 
-For example, if you open the file with 5 classes for animals, it shoud look like this:
+For example, if you open the file with 5 classes for animals, it should look like this:
 ```
 bear
 cat
@@ -90,9 +90,9 @@ Input image dimension is set to 299 by 299 pixels for Inception-v3 model.
 Here are the things that happen:
 
 * Add an operation to open and read the image file to the buffer
-* Decode the data as png, gif, bmp or jpeg based on the file extention
+* Decode the data as png, gif, bmp or jpeg based on the file extension
 * Cast the uint8 data to float32 to prepare for the range conversion later
-* Add one more dimension in axis 0. For example, if the original image has a dimention 1024x800x3, it will become 1x1024x800x3
+* Add one more dimension in axis 0. For example, if the original image has a dimension 1024x800x3, it will become 1x1024x800x3
 * Resize image 1x299x299x3 to using [bilinear interpolation](https://en.wikipedia.org/wiki/Bilinear_interpolation).
 * Normalize data. By default, shift the value from 0-255 to 0-1
 * Run the session to actually read the data and return in a numpy ndarray.
